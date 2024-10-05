@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { AudioPlayer } from './components/AudioPlayer';
 import Tracks from './Tracks'; // Import your Tracks component
 import About from './About';
+import Contact from './contact';
 import logo from './logo/logo.png'; //
 
 
@@ -62,7 +63,7 @@ function App() {
             } />
             <Route path="/tracks" element={<Tracks />} />
             <Route path="/about" element={<About />} />
-            
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
 
