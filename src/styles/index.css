@@ -1,3 +1,58 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.about-page {
+    padding: 40px;
+    max-width: 800px;
+    margin: 0 auto; /* Center the page content */
+    font-family: 'Arial', sans-serif;
+  }
+  
+  h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: white;
+  }
+  
+  p {
+    font-size: 18px;
+    line-height: 1.5;
+    color: goldenrod;
+  }
+  
+  .features, .team {
+    margin-top: 40px;
+    color: white ;
+  }
+  
+  .features ul {
+    list-style: none;
+    padding: 0;
+    color: goldenrod;
+  }
+  
+  .features ul li {
+    margin-bottom: 10px;
+  }
+  
+  .team ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .team li {
+    width: 300px; /* Adjust as needed */
+    text-align: center;
+    margin: 10px;
+  }
+  
+  .team img {
+    width: 150px; /* Adjust as needed */
+    border-radius: 50%;
+    margin-bottom: 10px;
+  } 
+
+

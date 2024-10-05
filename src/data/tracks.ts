@@ -1,50 +1,87 @@
 // audio files
-import beautiful from './a_beautiful_day.mp3';
-import world from './We_Are_The_World.mp3';
-import top from './dbang-world.mp3';
-import cinematic from './cinematic-time-lapse-115672.mp3';
-import forest from './forest-lullaby-110624.mp3';
-import podcast from './the-podcast-intro-111863.mp3';
+import introduction from './introduction.mp3';
+import blockbuster from './blockbuster.mp3';
+import muaziz from './MuazizSaarif.mp3';
+import awaam from './awaam.mp3';
+import nazar from './nazar.mp3';
+import lafz from './lafz.mp3';
+import felony from './felony.mp3';
+import love from './love.mp3';
+import jevin from './jevin.mp3';
+import runnin from './runnin.mp3';
 
 // audio thumbnails
-import lexin from './lexin.jpeg';
+import awam from './awam.jpg';
 import dbanj from './dbanj.png';
-import jackson from './jackson.jpeg';
-import trinix from './trinix.jpeg';
+import buster from './buster.png';
+import intro from './intro.png';
+import nazaar from './nazar.jpg';
+import laafz from './lafz.jpg';
+import felonyy from './felonyy.jpg';
+import lovee from './lovee.png';
+import jevinn from './jevinn.jpg';
+import running from './running.png';
+
 
 export const tracks = [
   {
-    title: 'Trinix ft Rushawn – Its a beautiful day',
-    src: beautiful,
-    author: 'Trinix ft Rushawn',
-    thumbnail: trinix,
+    title: ' Introduction',
+    src: introduction,
+    author: 'by Faris Shafi',
+    thumbnail: intro,
   },
   {
-    title: 'Michael Jackson – We Are The World',
-    src: world,
-    author: 'Michael Jackson',
-    thumbnail: jackson,
+    title: 'Blockbuster',
+    src: blockbuster,
+    author: 'by Faris Shafi',
+    thumbnail: buster,
   },
   {
-    title: 'D’banj -Top Of The World',
-    src: top,
-    author: 'Dbanj',
+    title: 'Muaziz Sarrif',
+    src: muaziz,
+    author: 'by Faris Shafi',
     thumbnail: dbanj,
   },
   {
-    title: 'Cinematic Time Lapse',
-    src: cinematic,
-    author: 'Lexin Music',
-    thumbnail: lexin,
+    title: 'Faris Shafi - Awaam (Feat. Mooroo)',
+    src: awaam,
+    author: 'by Faris Shafi',
+    thumbnail: awam,
   },
   {
-    title: 'Forest Lullaby',
-    src: forest,
-    author: 'Lesfm',
+    title: 'Nazar -Faris Shafi',
+    src: nazar,
+    author: 'by Faris Shafi',
+    thumbnail: nazaar,
   },
   {
-    title: 'The Podcast Intro',
-    src: podcast,
-    author: 'Music Unlimited',
+    title: 'Lafz',
+    src: lafz,
+    author: 'by Faris Shafi',
+    thumbnail: laafz,
+  },
+  {
+    title: 'Felony',
+    src: felony,
+    author: 'by Faris Shafi',
+    thumbnail: felonyy,
+  },
+  {
+    title: 'With Love',
+    src: love,
+    author: 'by Faris Shafi',
+    thumbnail: lovee,
+  },
+  {
+    title: 'Jevin Gill',
+    src: jevin,
+    author: 'by Talha Anjum',
+    thumbnail: jevinn,
+  },
+  {
+    title: 'Runnin',
+    src: runnin,
+    author: 'by Jokhay JJ47',
+    thumbnail: running,
   },
 ];
