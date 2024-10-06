@@ -19,17 +19,22 @@ export interface Track {
 }
 
 interface AudioPlayerContextType {
-  currentTrack: Track;
+  currentTrack: Track | null;
   setCurrentTrack: Dispatch<SetStateAction<Track>>;
+  audioRef: RefObject<HTMLAudioElement>;
+  progressBarRef: RefObject<HTMLInputElement>;
   timeProgress: number;
   setTimeProgress: Dispatch<SetStateAction<number>>;
   duration: number;
   setDuration: Dispatch<SetStateAction<number>>;
   setTrackIndex: Dispatch<SetStateAction<number>>;
-  audioRef: RefObject<HTMLAudioElement>;
-  progressBarRef: RefObject<HTMLInputElement>;
   isPlaying: boolean;
   setIsPlaying: Dispatch<SetStateAction<boolean>>;
+  trackIndex: number;
+  isShuffle: boolean;
+  setIsShuffle: Dispatch<SetStateAction<boolean>>;
+  isRepeat: boolean;
+  setIsRepeat: Dispatch<SetStateAction<boolean>>;
 }
 
 const AudioPlayerContext = createContext<
@@ -65,6 +70,11 @@ export const AudioPlayerProvider = ({
     setTrackIndex,
     isPlaying,
     setIsPlaying,
+    trackIndex,
+    isShuffle: false,
+    setIsShuffle: () => {},
+    isRepeat: false,
+    setIsRepeat: () => {},
   };
 
   return (

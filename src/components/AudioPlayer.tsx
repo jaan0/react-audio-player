@@ -1,40 +1,86 @@
-import { useState } from 'react';
-import { RiMenuAddLine } from 'react-icons/ri';
-
-import { TrackInfo } from './TrackInfo';
+import React, { useState, useEffect, useRef } from 'react';
+import { useAudio } from '../context/AudioContext';
 import { Controls } from './Controls';
+import { TrackInfo } from './TrackInfo';
 import { ProgressBar } from './ProgressBar';
 import { VolumeControl } from './VolumeControl';
-import { PlayList } from './PlayList';
 
-export const AudioPlayer = () => {
-  const [openDrawer, setOpenDrawer] = useState(false);
+export const AudioPlayer: React.FC = () => {
+  const { currentTrack, isPlaying, setIsPlaying } = useAudio();
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+
+  useEffect(() => {
+    if (audioRef.current && currentTrack) {
+      audioRef.current.src = currentTrack.src;
+      audioRef.current.load();
+      if (isPlaying) {
+        audioRef.current.play().catch(error => {
+          console.error('Audio playback failed:', error);
+          setIsPlaying(false);
+        });
+      }
+    }
+  }, [currentTrack, isPlaying, setIsPlaying]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const setAudioData = () => {
+      setDuration(audio.duration);
+      setCurrentTime(audio.currentTime);
+    };
+
+    const setAudioTime = () => setCurrentTime(audio.currentTime);
+
+    audio.addEventListener('loadeddata', setAudioData);
+    audio.addEventListener('timeupdate', setAudioTime);
+
+    return () => {
+      audio.removeEventListener('loadeddata', setAudioData);
+      audio.removeEventListener('timeupdate', setAudioTime);
+    };
+  }, []);
+
+  const handlePlayPause = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const handleSeek = (time: number) => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = time;
+      setCurrentTime(time);
+    }
+  };
+
+  if (!currentTrack) return null;
 
   return (
-    <div>
-      <div className="min-h-8 bg-[#2e2d2d] flex flex-col gap-9 lg:flex-row justify-between items-center text-white p-[0.5rem_10px]">
-        <TrackInfo />
-        <div className="w-full flex flex-col items-center gap-1 m-auto flex-1">
-          <Controls />
-          <ProgressBar />
-        </div>
-        <div className="flex items-center gap-2 text-gray-400">
-          <VolumeControl />
-          <button onClick={() => setOpenDrawer((prev) => !prev)}>
-            <RiMenuAddLine />
-          </button>
-        </div>
+    <div className="min-h-8 bg-[#2e2d2d] flex flex-col sm:flex-row gap-4 sm:gap-6 md:gap-8 lg:gap-9 justify-between items-center text-white p-2 sm:p-3 md:p-4 lg:p-[0.5rem_10px]">
+      <TrackInfo track={currentTrack} className="w-full sm:w-1/4" />
+      <div className="w-full sm:w-1/2 flex flex-col items-center gap-1 m-auto flex-1">
+        <Controls
+          isPlaying={isPlaying}
+          onPlayPause={handlePlayPause}
+          duration={duration}
+          currentTime={currentTime}
+          onSeek={handleSeek}
+        />
+        <ProgressBar currentTime={currentTime} duration={duration} onSeek={handleSeek} />
       </div>
-
-      <div
-        className={`transition-max-height duration-300 ease-in-out overflow-hidden ${
-          openDrawer ? 'max-h-72' : 'max-h-0'
-        }`}
-      >
-        <div className="bg-[#4c4848] text-white max-h-72 overflow-y-auto">
-          <PlayList />
-        </div>
+      <div className="flex items-center gap-2 text-gray-400 w-full sm:w-1/4 justify-end">
+        <VolumeControl audioRef={audioRef} />
       </div>
+      <audio ref={audioRef} />
     </div>
   );
 };

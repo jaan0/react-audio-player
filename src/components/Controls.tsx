@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import React from 'react';
 import {
   BsFillFastForwardFill,
   BsFillPauseFill,
@@ -8,99 +8,53 @@ import {
   BsSkipStartFill,
   BsShuffle,
   BsRepeat,
+  BsHeart,
+  BsHeartFill,
 } from 'react-icons/bs';
-
 import { useAudioPlayerContext } from '../context/audio-player-context';
 import { tracks } from '../data/tracks';
 
-export const Controls = () => {
+export interface ControlsProps {
+  isPlaying: boolean;
+  onPlayPause: () => void;
+  duration: number;
+  currentTime: number;
+  onSeek: (time: number) => void;
+}
+
+export const Controls: React.FC<ControlsProps> = ({
+  isPlaying,
+  onPlayPause,
+  onSeek
+}) => {
   const {
-    currentTrack,
     audioRef,
-    setDuration,
-    duration,
-    setTimeProgress,
-    progressBarRef,
+    
     setTrackIndex,
     setCurrentTrack,
-    isPlaying,
-    setIsPlaying,
+    isShuffle,
+    setIsShuffle,
+    isRepeat,
+    setIsRepeat,
   } = useAudioPlayerContext();
 
-  const [isShuffle, setIsShuffle] = useState<boolean>(false);
-  const [isRepeat, setIsRepeat] = useState<boolean>(false);
-  // const [isPlaying, setIsPlaying] = useState<boolean>(false);
-
-  const playAnimationRef = useRef<number | null>(null);
-
-  const updateProgress = useCallback(() => {
-    if (audioRef.current && progressBarRef.current && duration) {
-      const currentTime = audioRef.current.currentTime;
-      setTimeProgress(currentTime);
-
-      progressBarRef.current.value = currentTime.toString();
-      progressBarRef.current.style.setProperty(
-        '--range-progress',
-        `${(currentTime / duration) * 100}%`
-      );
-    }
-  }, [duration, setTimeProgress, audioRef, progressBarRef]);
-
-  const startAnimation = useCallback(() => {
-    if (audioRef.current && progressBarRef.current && duration) {
-      const animate = () => {
-        updateProgress();
-        playAnimationRef.current = requestAnimationFrame(animate);
-      };
-      playAnimationRef.current = requestAnimationFrame(animate);
-    }
-  }, [updateProgress, duration, audioRef, progressBarRef]);
-
-  useEffect(() => {
-    if (isPlaying) {
-      audioRef.current?.play();
-      startAnimation();
-    } else {
-      audioRef.current?.pause();
-      if (playAnimationRef.current !== null) {
-        cancelAnimationFrame(playAnimationRef.current);
-        playAnimationRef.current = null;
-      }
-      updateProgress(); // Ensure progress is updated immediately when paused
-    }
-
-    return () => {
-      if (playAnimationRef.current !== null) {
-        cancelAnimationFrame(playAnimationRef.current);
-      }
-    };
-  }, [isPlaying, startAnimation, updateProgress, audioRef]);
-
-  const onLoadedMetadata = () => {
-    const seconds = audioRef.current?.duration;
-    if (seconds !== undefined) {
-      setDuration(seconds);
-      if (progressBarRef.current) {
-        progressBarRef.current.max = seconds.toString();
-      }
-    }
-  };
+  const [isLiked, setIsLiked] = React.useState(false);
 
   const skipForward = () => {
     if (audioRef.current) {
       audioRef.current.currentTime += 15;
-      updateProgress();
+      onSeek(audioRef.current.currentTime);
     }
   };
 
   const skipBackward = () => {
     if (audioRef.current) {
       audioRef.current.currentTime -= 15;
-      updateProgress();
+      onSeek(audioRef.current.currentTime);
     }
   };
 
-  const handlePrevious = useCallback(() => {
+  const handlePrevious = React.useCallback(() => {
     setTrackIndex((prev) => {
       const newIndex = isShuffle
         ? Math.floor(Math.random() * tracks.length)
@@ -112,7 +66,7 @@ export const Controls = () => {
     });
   }, [isShuffle, setCurrentTrack, setTrackIndex]);
 
-  const handleNext = useCallback(() => {
+  const handleNext = React.useCallback(() => {
     setTrackIndex((prev) => {
       const newIndex = isShuffle
         ? Math.floor(Math.random() * tracks.length)
@@ -124,63 +78,60 @@ export const Controls = () => {
     });
   }, [isShuffle, setCurrentTrack, setTrackIndex]);
 
-  useEffect(() => {
-    const currentAudioRef = audioRef.current;
+  const handleLike = () => {
+    setIsLiked((prev) => !prev);
+  };
 
-    if (currentAudioRef) {
-      currentAudioRef.onended = () => {
-        if (isRepeat) {
-          currentAudioRef.play();
-        } else {
-          handleNext(); // This function should handle both shuffle and non-shuffle scenarios
-        }
-      };
-    }
-
-    return () => {
-      if (currentAudioRef) {
-        currentAudioRef.onended = null;
-      }
-    };
-  }, [isRepeat, handleNext, audioRef]);
+ 
 
   return (
-    <div className="flex gap-4 items-center">
-      <audio
-        src={currentTrack.src}
-        ref={audioRef}
-        onLoadedMetadata={onLoadedMetadata}
+    <div className="flex gap-6 items-center">
+    {/*  <input
+        type="range"
+        ref={progressBarRef}
+        defaultValue="0"
+        onChange={handleSeek}
+        max={duration}
+        value={currentTime}
       />
-      <button onClick={handlePrevious}>
+    */}
+      <button onClick={handlePrevious} className="p-2">
         <BsSkipStartFill size={20} />
       </button>
-      <button onClick={skipBackward}>
+      <button onClick={skipBackward} className="p-2">
         <BsFillRewindFill size={20} />
       </button>
-      <button onClick={() => setIsPlaying((prev) => !prev)}>
+      <button onClick={onPlayPause} className="p-2">
         {isPlaying ? (
           <BsFillPauseFill size={30} />
         ) : (
           <BsFillPlayFill size={30} />
         )}
       </button>
-      <button onClick={skipForward}>
+      <button onClick={skipForward} className="p-2">
         <BsFillFastForwardFill size={20} />
       </button>
-      <button onClick={handleNext}>
+      <button onClick={handleNext} className="p-2">
         <BsSkipEndFill size={20} />
       </button>
-      <button onClick={() => setIsShuffle((prev) => !prev)}>
+      <button onClick={() => setIsShuffle((prev) => !prev)} className="p-2">
         <BsShuffle
           size={20}
           className={isShuffle ? 'text-[#f50]' : ''}
         />
       </button>
-      <button onClick={() => setIsRepeat((prev) => !prev)}>
+      <button onClick={() => setIsRepeat((prev) => !prev)} className="p-2">
         <BsRepeat
           size={20}
           className={isRepeat ? 'text-[#f50]' : ''}
         />
+      </button>
+      <button onClick={handleLike} className="p-2">
+        {isLiked ? (
+          <BsHeartFill size={20} className="text-red-500" />
+        ) : (
+          <BsHeart size={20} />
+        )}
       </button>
     </div>
   );

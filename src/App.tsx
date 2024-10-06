@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
+import SongOfTheDay from './components/SongOfTheDay';
 import { AudioPlayer } from './components/AudioPlayer';
 import Tracks from './Tracks'; // Import your Tracks component
 import About from './About';
 import Contact from './contact';
-import logo from './logo/logo.png'; //
+import logo from './logo/logo.png'; //import ArtistList from './components/ArtistList';
+import { AudioProvider } from './context/AudioContext';
+
+
 
 
 
@@ -14,9 +18,13 @@ function AppContent() {
   const currentYear = new Date().getFullYear();
   const location = useLocation();
 
+ 
+
+
   const showAudioPlayer = location.pathname === '/' || location.pathname === '/tracks';
 
-  return (
+  return (<>
+    <AudioProvider>
     <div className="flex flex-col min-h-screen bg-[#011d36]">
       <header className="p-4 bg-black bg-opacity-30 text-white">
         <div className="container mx-auto">
@@ -60,19 +68,20 @@ function AppContent() {
 
       <main className={`flex-grow flex items-center justify-center ${showAudioPlayer ? 'pb-24' : ''}`}>
         <Routes>
-          <Route path="/" element={
+          <Route path="/" element={<>
             <div className="container mx-auto mt-4">
-              <h2 className="text-3xl font-bold text-white text-center">
-                Audio player in React
-              </h2>
+            <SongOfTheDay />
             </div>
-          } />
+          </>} />
           <Route path="/tracks" element={<Tracks />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+  
         </Routes>
       </main>
-
+              <br />
+              <br />  
+              <br />
       <footer className={`${showAudioPlayer ? 'fixed bottom-0 left-0 right-0' : ''} bg-black bg-opacity-30 text-white`}>
         <div className="container mx-auto">
           {showAudioPlayer && <AudioPlayer />}
@@ -80,13 +89,14 @@ function AppContent() {
         </div>
       </footer>
     </div>
-    );
+    </AudioProvider>
+    </> );
 }
 
 function App() {
   return (
     <Router>
-      <AppContent />
+        <AppContent />
     </Router>
   );
 }
