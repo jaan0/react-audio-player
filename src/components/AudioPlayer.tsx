@@ -1,9 +1,25 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { RefObject, useEffect, useRef, useState } from 'react';
 import { useAudio } from '../context/AudioContext';
 import { Controls } from './Controls';
-import { TrackInfo } from './TrackInfo';
-import { ProgressBar } from './ProgressBar';
+import TrackInfo from './TrackInfo';
+import ProgressBar from './ProgressBar';
 import { VolumeControl } from './VolumeControl';
+import { Track } from '../data/tracks';
+
+export interface TrackInfoProps {
+  track: Track | null;
+  className: string;
+}
+
+export interface SeekBarProps {
+  currentTime: number;
+  duration: number;
+  onSeek: (time: number) => void;
+}
+
+export interface ControlsProps {
+  audioRef: RefObject<HTMLAudioElement>;
+}
 
 export const AudioPlayer: React.FC = () => {
   const { currentTrack, isPlaying, setIsPlaying } = useAudio();
@@ -66,7 +82,7 @@ export const AudioPlayer: React.FC = () => {
 
   return (
     <div className="min-h-8 bg-[#2e2d2d] flex flex-col sm:flex-row gap-4 sm:gap-6 md:gap-8 lg:gap-9 justify-between items-center text-white p-2 sm:p-3 md:p-4 lg:p-[0.5rem_10px]">
-      <TrackInfo track={currentTrack} className="w-full sm:w-1/4" />
+      <TrackInfo currentTrack={currentTrack} />
       <div className="w-full sm:w-1/2 flex flex-col items-center gap-1 m-auto flex-1">
         <Controls
           isPlaying={isPlaying}

@@ -1,11 +1,15 @@
 import { useAudioPlayerContext } from '../context/audio-player-context';
 
-export const ProgressBar = () => {
+interface ProgressBarProps {
+  currentTime: number;
+  duration: number;
+  onSeek: (time: number) => void;
+}
+
+const ProgressBar: React.FC<ProgressBarProps> = ({ currentTime, duration }) => {
   const {
     progressBarRef,
     audioRef,
-    timeProgress,
-    duration,
     setTimeProgress,
   } = useAudioPlayerContext();
 
@@ -40,7 +44,7 @@ export const ProgressBar = () => {
 
   return (
     <div className="flex items-center justify-center gap-5 w-full">
-      <span>{formatTime(timeProgress)}</span>
+      <span>{formatTime(currentTime)}</span>
       <input
         className="max-w-[80%] bg-gray-300"
         ref={progressBarRef}
@@ -52,3 +56,5 @@ export const ProgressBar = () => {
     </div>
   );
 };
+
+export default ProgressBar;

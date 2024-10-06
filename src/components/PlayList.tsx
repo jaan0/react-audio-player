@@ -21,7 +21,7 @@ export const PlayList = () => {
         <li
           key={index}
           className={`flex items-center gap-3 p-[0.5rem_10px] cursor-pointer ${
-            currentTrack.title === track.title ? 'bg-[#a66646]' : ''
+            currentTrack && currentTrack.title === track.title ? 'bg-[#a66646]' : ''
           }`}
           tabIndex={0}
           onKeyDown={(e) => {

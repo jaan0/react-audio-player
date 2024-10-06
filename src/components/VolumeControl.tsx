@@ -1,16 +1,18 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, RefObject, useEffect, useState } from 'react';
 
 import {
   IoMdVolumeHigh,
   IoMdVolumeOff,
   IoMdVolumeLow,
 } from 'react-icons/io';
-import { useAudioPlayerContext } from '../context/audio-player-context';
 
-export const VolumeControl = () => {
+interface VolumeControlProps {
+  audioRef: RefObject<HTMLAudioElement>;
+}
+
+export const VolumeControl: React.FC<VolumeControlProps> = ({ audioRef }) => {
   const [volume, setVolume] = useState<number>(60);
   const [muteVolume, setMuteVolume] = useState(false);
-  const { audioRef } = useAudioPlayerContext();
 
   useEffect(() => {
     if (audioRef.current) {

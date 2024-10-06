@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
 import SongOfTheDay from './components/SongOfTheDay';
 import { AudioPlayer } from './components/AudioPlayer';
