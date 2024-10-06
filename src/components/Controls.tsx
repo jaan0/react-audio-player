@@ -82,55 +82,42 @@ export const Controls: React.FC<ControlsProps> = ({
     setIsLiked((prev) => !prev);
   };
 
- 
-
   return (
-    <div className="flex gap-6 items-center">
-    {/*  <input
-        type="range"
-        ref={progressBarRef}
-        defaultValue="0"
-        onChange={handleSeek}
-        max={duration}
-        value={currentTime}
-      />
-    */}
-      <button onClick={handlePrevious} className="p-2">
-        <BsSkipStartFill size={20} />
+    <div className="flex flex-wrap justify-center items-center gap-1 sm:gap-2 md:gap-3 lg:gap-4">
+      <button onClick={handlePrevious} className="p-1 sm:p-2">
+        <BsSkipStartFill className="w-4 h-4 sm:w-5 sm:h-5" />
       </button>
-      <button onClick={skipBackward} className="p-2">
-        <BsFillRewindFill size={20} />
+      <button onClick={skipBackward} className="p-1 sm:p-2">
+        <BsFillRewindFill className="w-4 h-4 sm:w-5 sm:h-5" />
       </button>
-      <button onClick={onPlayPause} className="p-2">
+      <button onClick={onPlayPause} className="p-1 sm:p-2">
         {isPlaying ? (
-          <BsFillPauseFill size={30} />
+          <BsFillPauseFill className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
         ) : (
-          <BsFillPlayFill size={30} />
+          <BsFillPlayFill className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
         )}
       </button>
-      <button onClick={skipForward} className="p-2">
-        <BsFillFastForwardFill size={20} />
+      <button onClick={skipForward} className="p-1 sm:p-2">
+        <BsFillFastForwardFill className="w-4 h-4 sm:w-5 sm:h-5" />
       </button>
-      <button onClick={handleNext} className="p-2">
-        <BsSkipEndFill size={20} />
+      <button onClick={handleNext} className="p-1 sm:p-2">
+        <BsSkipEndFill className="w-4 h-4 sm:w-5 sm:h-5" />
       </button>
-      <button onClick={() => setIsShuffle((prev) => !prev)} className="p-2">
+      <button onClick={() => setIsShuffle((prev) => !prev)} className="p-1 sm:p-2">
         <BsShuffle
-          size={20}
-          className={isShuffle ? 'text-[#f50]' : ''}
+          className={`w-4 h-4 sm:w-5 sm:h-5 ${isShuffle ? 'text-[#f50]' : ''}`}
         />
       </button>
-      <button onClick={() => setIsRepeat((prev) => !prev)} className="p-2">
+      <button onClick={() => setIsRepeat((prev) => !prev)} className="p-1 sm:p-2">
         <BsRepeat
-          size={20}
-          className={isRepeat ? 'text-[#f50]' : ''}
+          className={`w-4 h-4 sm:w-5 sm:h-5 ${isRepeat ? 'text-[#f50]' : ''}`}
         />
       </button>
-      <button onClick={handleLike} className="p-2">
+      <button onClick={handleLike} className="p-1 sm:p-2">
         {isLiked ? (
-          <BsHeartFill size={20} className="text-red-500" />
+          <BsHeartFill className="w-4 h-4 sm:w-5 sm:h-5 text-red-500" />
         ) : (
-          <BsHeart size={20} />
+          <BsHeart className="w-4 h-4 sm:w-5 sm:h-5" />
         )}
       </button>
     </div>

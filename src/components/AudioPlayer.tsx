@@ -81,9 +81,11 @@ export const AudioPlayer: React.FC = () => {
   if (!currentTrack) return null;
 
   return (
-    <div className="min-h-8 bg-[#2e2d2d] flex flex-col sm:flex-row gap-4 sm:gap-6 md:gap-8 lg:gap-9 justify-between items-center text-white p-2 sm:p-3 md:p-4 lg:p-[0.5rem_10px]">
-      <TrackInfo currentTrack={currentTrack} />
-      <div className="w-full sm:w-1/2 flex flex-col items-center gap-1 m-auto flex-1">
+    <div className="bg-[#2e2d2d] flex flex-col sm:flex-row items-center text-white p-2 sm:p-3 md:p-4">
+      <div className="w-full sm:w-1/4 mb-2 sm:mb-0">
+        <TrackInfo currentTrack={currentTrack} />
+      </div>
+      <div className="w-full sm:w-1/2 flex flex-col items-center gap-1 mb-2 sm:mb-0">
         <Controls
           isPlaying={isPlaying}
           onPlayPause={handlePlayPause}
@@ -93,7 +95,7 @@ export const AudioPlayer: React.FC = () => {
         />
         <ProgressBar currentTime={currentTime} duration={duration} onSeek={handleSeek} />
       </div>
-      <div className="flex items-center gap-2 text-gray-400 w-full sm:w-1/4 justify-end">
+      <div className="w-full sm:w-1/4 flex justify-center sm:justify-end">
         <VolumeControl audioRef={audioRef} />
       </div>
       <audio ref={audioRef} />
