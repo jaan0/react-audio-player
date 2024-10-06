@@ -18,10 +18,10 @@ const TrackList: React.FC<TrackListProps> = ({ tracks, onSelectTrack, selectedTr
   const displayedTracks = showAllTracks ? tracks : tracks.slice(0, 4);
 
   return (
-    <div className="max-w-md ml-4">
-      <h2 className="text-xl font-bold mb-2 text-[#FFD700]">Track List</h2>
+    <div className="w-full max-w-md mx-auto px-4 sm:px-6 md:px-8">
+      <h2 className="text-lg sm:text-xl font-bold mb-2 text-[#FFD700]">Track List</h2>
       {tracks.length === 0 ? (
-        <p>No tracks available for this artist.</p>
+        <p className="text-sm sm:text-base">No tracks available for this artist.</p>
       ) : (
         <>
           <ul className="space-y-2">
@@ -30,15 +30,15 @@ const TrackList: React.FC<TrackListProps> = ({ tracks, onSelectTrack, selectedTr
               return (
                 <li
                   key={track.id}
-                  className={`p-2 rounded cursor-pointer ${
+                  className={`p-2 sm:p-3 rounded cursor-pointer ${
                     isSelected
                       ? 'bg-blue-500 text-white'
                       : 'bg-gray-100 hover:bg-gray-200'
                   }`}
                   onClick={() => onSelectTrack(track)}
                 >
-                  <div className="font-semibold">{track.title}</div>
-                  <div className={`text-sm ${isSelected ? 'text-blue-100' : 'text-gray-600'}`}>
+                  <div className="font-semibold text-sm sm:text-base">{track.title}</div>
+                  <div className={`text-xs sm:text-sm ${isSelected ? 'text-blue-100' : 'text-gray-600'}`}>
                     {track.author}
                   </div>
                   <div className={`text-xs ${isSelected ? 'text-blue-200' : 'text-gray-500'}`}>
@@ -51,7 +51,7 @@ const TrackList: React.FC<TrackListProps> = ({ tracks, onSelectTrack, selectedTr
           {tracks.length > 4 && (
             <button
               onClick={toggleShowAllTracks}
-              className="mt-2 flex items-center text-blue-500 hover:text-blue-700"
+              className="mt-2 flex items-center text-blue-500 hover:text-blue-700 text-sm sm:text-base"
             >
               {showAllTracks ? (
                 <>
