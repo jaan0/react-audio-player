@@ -5,7 +5,8 @@ import jane from './jane.png';
 import alice from './alice.png';   
 
 function About() {
-  return (
+
+  return (<>
     <div className="about-page">
       <h1>About Musico</h1>
       <p>
@@ -39,7 +40,9 @@ function About() {
         </ul>   
       </div>
     </div>  
-  );
+
+
+ </> );
 }
 
 export default About;

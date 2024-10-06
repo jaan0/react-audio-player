@@ -22,8 +22,7 @@ const Tracks: React.FC = () => {
             {/* Add routes for About and Contact if you have those components */}
           </Routes>
         </main>
-    <br />
-        <AudioPlayer/>
+    
     </div>
   </>
   );
