@@ -39,9 +39,8 @@ const SongOfTheDay: React.FC = () => {
 
   if (!songOfTheDay) return null;
 
-  return (<>
-    <h2 className='text-2xl font-bold text-[#8f9420] '>Song of the day</h2><br />
-    <div className="bg-gray-100 p-4 rounded-lg shadow-md max-w-xs">
+  return (<div className="flex items-center justify-center min-h-screen p-4">
+    <div className="bg-gray-100 p-4 rounded-lg shadow-md w-full max-w-xs">
       <img src={songOfTheDay.thumbnail} alt={songOfTheDay.title} className="w-full h-40 object-cover rounded-md mb-2" />
       <div className="text-center">
         <h3 className="text-md font-semibold truncate">{songOfTheDay.title}</h3>
@@ -66,7 +65,7 @@ const SongOfTheDay: React.FC = () => {
       </div>
       <audio ref={audioRef} src={songOfTheDay.src} />
     </div>
- </> );
+  </div>);
 };
 
 export default SongOfTheDay;
