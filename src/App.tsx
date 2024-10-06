@@ -8,7 +8,6 @@ import logo from './logo/logo.png'; //
 
 
 
-import trendingImage from './data/awam.jpg'; // Import your trending image
 
 function AppContent() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -57,7 +56,7 @@ function AppContent() {
         </div>
       </header>
 
-      
+
 
       <main className={`flex-grow flex items-center justify-center ${showAudioPlayer ? 'pb-24' : ''}`}>
         <Routes>
