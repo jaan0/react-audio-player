@@ -1,58 +1,31 @@
-import { useAudioPlayerContext } from '../context/audio-player-context';
+import React from 'react';
+import { SeekBarProps } from './AudioPlayer';
 
-interface ProgressBarProps {
-  currentTime: number;
-  duration: number;
-  onSeek: (time: number) => void;
-}
-
-const ProgressBar: React.FC<ProgressBarProps> = ({ currentTime, duration }) => {
-  const {
-    progressBarRef,
-    audioRef,
-    setTimeProgress,
-  } = useAudioPlayerContext();
-
-  const handleProgressChange = () => {
-    if (audioRef.current && progressBarRef.current) {
-      const newTime = Number(progressBarRef.current.value);
-      audioRef.current.currentTime = newTime;
-
-      setTimeProgress(newTime);
-
-      // if progress bar changes while audio is on pause
-      progressBarRef.current.style.setProperty(
-        '--range-progress',
-        `${(newTime / duration) * 100}%`
-      );
-    }
+const ProgressBar: React.FC<SeekBarProps> = ({ currentTime, duration, onSeek }) => {
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
 
-  const formatTime = (time: number | undefined): string => {
-    if (typeof time === 'number' && !isNaN(time)) {
-      const minutes = Math.floor(time / 60);
-      const seconds = Math.floor(time % 60);
-
-      // Convert to string and pad with leading zeros if necessary
-      const formatMinutes = minutes.toString().padStart(2, '0');
-      const formatSeconds = seconds.toString().padStart(2, '0');
-
-      return `${formatMinutes}:${formatSeconds}`;
-    }
-    return '00:00';
+  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const time = parseFloat(e.target.value);
+    onSeek(time);
   };
 
   return (
-    <div className="flex items-center justify-center gap-5 w-full">
-      <span>{formatTime(currentTime)}</span>
+    <div className="w-full flex items-center gap-2">
+      <span className="text-xs">{formatTime(currentTime)}</span>
       <input
-        className="max-w-[80%] bg-gray-300"
-        ref={progressBarRef}
         type="range"
-        defaultValue="0"
-        onChange={handleProgressChange}
+        min={0}
+        max={duration || 100}
+        value={currentTime}
+        onChange={handleSeek}
+        className="w-full"
+        style={{ background: `linear-gradient(to right, #1db954 0%, #1db954 ${(currentTime / duration) * 100}%, #4d4d4d ${(currentTime / duration) * 100}%, #4d4d4d 100%)` }}
       />
-      <span>{formatTime(duration)}</span>
+      <span className="text-xs">{formatTime(duration)}</span>
     </div>
   );
 };

@@ -9,6 +9,9 @@ import Contact from './contact';
 import logo from './logo/logo.png'; //import ArtistList from './components/ArtistList';
 import { AudioProvider } from './context/AudioContext';
 import Song from './components/Song';
+import LoginForm from './forms/login';  
+import SignupForm from './forms/signup';
+
 
 interface Song {
   id: string | number;
@@ -76,8 +79,10 @@ function AppContent() {
     setSearchTerm('');
     setSearchResults([]);
   };
-
-  return (<>
+  return (
+  <>
+  <div>
+ 
     <AudioProvider>
     <div className="flex flex-col min-h-screen bg-[#011d36]">
       <header className="p-4 bg-black bg-opacity-30 text-white">
@@ -142,11 +147,11 @@ function AppContent() {
               </div>
             </nav>
             <div className="hidden lg:flex space-x-2 mt-4 lg:mt-0">
-              <button className="bg-pink-500 hover:bg-pink-900 text-white font-bold py-2 px-4 rounded ">
-                Login
+              <button className="bg-green-500 hover:bg-green-900 text-white font-bold py-2 px-4 rounded">
+                <Link to="/login">Login</Link>
               </button>
               <button className="bg-purple-500 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded">
-                Sign Up
+                <Link to="/signup">Signup</Link>
               </button>
             </div>
           </div>
@@ -166,10 +171,10 @@ function AppContent() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/song/:id" element={<Song />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/signup" element={<SignupForm />} />
         </Routes>
       </main>
-              <br />
-              <br />  
               <br />
       <footer className={`${showAudioPlayer ? 'fixed bottom-0 left-0 right-0' : ''} bg-black bg-opacity-80 text-white`}>
         <div className="container mx-auto">
@@ -179,7 +184,9 @@ function AppContent() {
       </footer>
     </div>
     </AudioProvider>
-    </> );
+    </div> 
+  
+  </>);
 }
 
 function App() {

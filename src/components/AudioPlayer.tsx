@@ -7,8 +7,8 @@ import { VolumeControl } from './VolumeControl';
 import { Track } from '../data/tracks';
 
 export interface TrackInfoProps {
-  track: Track | null;
-  className: string;
+  currentTrack: Track | null;
+  className?: string; // Make className optional
 }
 
 export interface SeekBarProps {
@@ -19,6 +19,11 @@ export interface SeekBarProps {
 
 export interface ControlsProps {
   audioRef: RefObject<HTMLAudioElement>;
+  isPlaying: boolean;
+  onPlayPause: () => void;
+  duration: number;
+  currentTime: number;
+  onSeek: (time: number) => void;
 }
 
 export const AudioPlayer: React.FC = () => {
@@ -29,6 +34,7 @@ export const AudioPlayer: React.FC = () => {
 
   useEffect(() => {
     if (audioRef.current && currentTrack) {
+      console.log('Loading track:', currentTrack.src);
       audioRef.current.src = currentTrack.src;
       audioRef.current.load();
       if (isPlaying) {
@@ -45,11 +51,15 @@ export const AudioPlayer: React.FC = () => {
     if (!audio) return;
 
     const setAudioData = () => {
+      console.log('Audio loaded, duration:', audio.duration);
       setDuration(audio.duration);
       setCurrentTime(audio.currentTime);
     };
 
-    const setAudioTime = () => setCurrentTime(audio.currentTime);
+    const setAudioTime = () => {
+      console.log('Current time:', audio.currentTime);
+      setCurrentTime(audio.currentTime);
+    };
 
     audio.addEventListener('loadeddata', setAudioData);
     audio.addEventListener('timeupdate', setAudioTime);
@@ -65,13 +75,16 @@ export const AudioPlayer: React.FC = () => {
       if (isPlaying) {
         audioRef.current.pause();
       } else {
-        audioRef.current.play();
+        audioRef.current.play().catch(error => {
+          console.error('Audio playback failed:', error);
+        });
       }
       setIsPlaying(!isPlaying);
     }
   };
 
   const handleSeek = (time: number) => {
+    console.log('Seeking to:', time);
     if (audioRef.current) {
       audioRef.current.currentTime = time;
       setCurrentTime(time);

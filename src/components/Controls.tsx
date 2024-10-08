@@ -29,7 +29,6 @@ export const Controls: React.FC<ControlsProps> = ({
 }) => {
   const {
     audioRef,
-    
     setTrackIndex,
     setCurrentTrack,
     isShuffle,
