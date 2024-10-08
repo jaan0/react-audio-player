@@ -1,8 +1,6 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaBars, FaTimes } from 'react-icons/fa';
-import logo from '../logo/logo.png';
+import logo from '../logo/logo.png'; 
 
 interface NavigationProps {
   handleSearch: (term: string) => void;
@@ -14,10 +12,6 @@ const Navigation: React.FC<NavigationProps> = ({ handleSearch, searchResults, ha
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchError, setSearchError] = useState('');
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
 
   return (
     <header className="p-4 bg-black text-white">
@@ -32,10 +26,12 @@ const Navigation: React.FC<NavigationProps> = ({ handleSearch, searchResults, ha
             className="cursor-pointer"
           />
           <button
-            onClick={toggleMenu}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="lg:hidden text-white focus:outline-none"
           >
-            {isMenuOpen ? <FaTimes /> : <FaBars />}
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
           </button>
           <nav className={`nav-container ${isMenuOpen ? 'block' : 'hidden'} lg:flex w-full lg:w-auto mt-4 lg:mt-0`}>
             <ul className="flex flex-col lg:flex-row lg:space-x-4">
@@ -43,6 +39,13 @@ const Navigation: React.FC<NavigationProps> = ({ handleSearch, searchResults, ha
               <li><Link to="/tracks" className="block py-2 hover:text-pink-300">Tracks</Link></li>
               <li><Link to="/about" className="block py-2 hover:text-pink-300">About</Link></li>
               <li><Link to="/contact" className="block py-2 hover:text-pink-300">Contact Us</Link></li>
+              {/* Add login and signup buttons for mobile view */}
+              <li className="lg:hidden mt-4">
+                <Link to="/login" className="block py-2 px-4 bg-green-500 hover:bg-green-900 text-white font-bold rounded">Login</Link>
+              </li>
+              <li className="lg:hidden mt-2">
+                <Link to="/signup" className="block py-2 px-4 bg-purple-500 hover:bg-purple-900 text-white font-bold rounded">Signup</Link>
+              </li>
             </ul>
             <div className="search-container relative mt-4 lg:mt-0 lg:ml-4 w-full lg:w-auto">
               <form onSubmit={(e) => {
@@ -79,14 +82,7 @@ const Navigation: React.FC<NavigationProps> = ({ handleSearch, searchResults, ha
               )}
             </div>
           </nav>
-          <div className="lg:hidden mt-4 space-y-2">
-            <button className="bg-green-500 hover:bg-green-900 text-white font-bold py-2 px-4 rounded w-full">
-              <Link to="/login">Login</Link>
-            </button>
-            <button className="bg-purple-500 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded w-full">
-              <Link to="/signup">Signup</Link>
-            </button>
-          </div>
+          {/* Keep the desktop version of login and signup buttons */}
           <div className="hidden lg:flex space-x-2 mt-4 lg:mt-0">
             <button className="bg-green-500 hover:bg-green-900 text-white font-bold py-2 px-4 rounded">
               <Link to="/login">Login</Link>
@@ -102,4 +98,3 @@ const Navigation: React.FC<NavigationProps> = ({ handleSearch, searchResults, ha
 };
 
 export default Navigation;
-
