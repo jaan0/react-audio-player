@@ -21,6 +21,7 @@ const Player: React.FC<PlayerProps> = ({ track }) => {
     }
   }, [isPlaying]);
 
+
   useEffect(() => {
     // Reset audio when track changes
     if (audioRef.current) {
@@ -33,16 +34,10 @@ const Player: React.FC<PlayerProps> = ({ track }) => {
     setIsPlaying(!isPlaying);
   };
 
+
   const controlsProps: ControlsProps = {
     isPlaying,
-    onPlayPause: handlePlayPause,
-    duration: audioRef.current?.duration ?? 0,
-    currentTime: audioRef.current?.currentTime ?? 0,
-    onSeek: (time: number) => {
-      if (audioRef.current) {
-        audioRef.current.currentTime = time;
-      }
-    }
+    onPlayPause: handlePlayPause
   };
 
   return (
@@ -55,7 +50,9 @@ const Player: React.FC<PlayerProps> = ({ track }) => {
         src={track.src}
         onEnded={() => setIsPlaying(false)}
       />
-      <Controls {...controlsProps} />
+      <Controls 
+        {...controlsProps}
+      />
     </div>
   );
 };
