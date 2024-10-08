@@ -22,10 +22,8 @@ function About() {
       <div className="team">
         <h2>Our Team:</h2>
         <ul>
-          <li>John Doe - CEO</li>
-          <li>Jane Smith - CTO </li>
-          <li>Alice Johnson - Marketing Manager</li>
-          {/* ... more team members */}
+          <li className="text-[#FFD700]">Ali Jan - CEO</li>
+          
         </ul>   
       </div>
     </div>  
