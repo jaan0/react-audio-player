@@ -57,41 +57,44 @@
 
 
   .formContainer {
-    margin: auto;
+    margin: 20px auto;
     display: flex;
     flex-direction: column;
     text-align: left;
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 10px 10px 0 rgba(255, 255, 255, 0.05);
     border-radius: 20px;
-    padding: 30px;
+    padding: 20px;
     transition: all 0.2s ease-in;
     background-color: rgba(18, 18, 18, 0.6);
     color: white;
-    width: 50%;
+    width: 90%;
+    max-width: 500px;
     backdrop-filter: blur(10px);
 }
 
-.formElement{
+.formElement {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
-.formElement input, textarea{
-    padding: 8px;
+.formElement input, .formElement textarea {
+    padding: 10px;
     border-radius: 10px;
     border: 2px solid rgba(255, 255, 255, 0.1);
     resize: none;
     background-color: rgba(18, 18, 18, 0.4);
     color: white;
+    font-size: 16px;
 }
 
 .formButton {
-    width: 100px;
-    padding: 10px;
-    margin-left: auto;
+    width: 100%;
+    max-width: 200px;
+    padding: 12px;
+    margin: 10px auto 0;
     border-radius: 10px;
     font-weight: 600;
     border: 2px solid rgba(255, 255, 255, 0.1);
@@ -99,10 +102,47 @@
     transition: all 0.2s ease-in;
     background-color: rgba(255, 255, 255, 0.1);
     color: white;
+    font-size: 16px;
 }
 
 .formButton:hover {
     cursor: pointer;
     box-shadow: 5px 5px 0 rgba(255, 255, 255, 0.1);
     transform: translateX(-5px) translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+    .formContainer {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .formElement input, .formElement textarea {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .formButton {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .formContainer {
+        width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .formElement input, .formElement textarea {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .formButton {
+        padding: 8px;
+        font-size: 12px;
+    }
 }
