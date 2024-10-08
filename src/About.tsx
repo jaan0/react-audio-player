@@ -1,9 +1,4 @@
 
-
-import john from './jhon.png';
-import jane from './jane.png';
-import alice from './alice.png';   
-
 function About() {
 
   return (<>
@@ -27,15 +22,9 @@ function About() {
       <div className="team">
         <h2>Our Team:</h2>
         <ul>
-          <li>John Doe - CEO
-            <img src={john} alt="John Doe" className="w-100 h-100 rounded-full" />
-          </li>
-          <li>Jane Smith - CTO
-            <img src={jane} alt="Jane Smith" className="w-100 h-100 rounded-full" />
-          </li>
-          <li>Alice Johnson - Marketing Manager
-            <img src={alice} alt="Alice Johnson" className="w-100 h-100 rounded-full" />
-          </li>
+          <li>John Doe - CEO</li>
+          <li>Jane Smith - CTO </li>
+          <li>Alice Johnson - Marketing Manager</li>
           {/* ... more team members */}
         </ul>   
       </div>

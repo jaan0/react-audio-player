@@ -37,13 +37,11 @@ const TrackList: React.FC<TrackListProps> = ({ tracks, onSelectTrack, selectedTr
                   }`}
                   onClick={() => onSelectTrack(track)}
                 >
-                  <div className="font-semibold text-sm sm:text-base">{track.title}</div>
+                  <div className="font-bold text-sm sm:text-base">{track.title}</div>
                   <div className={`text-xs sm:text-sm ${isSelected ? 'text-blue-100' : 'text-gray-600'}`}>
                     {track.author}
                   </div>
-                  <div className={`text-xs ${isSelected ? 'text-blue-200' : 'text-gray-500'}`}>
-                    Artist: {track.artist}
-                  </div>
+                  
                 </li>
               );
             })}
@@ -51,7 +49,7 @@ const TrackList: React.FC<TrackListProps> = ({ tracks, onSelectTrack, selectedTr
           {tracks.length > 4 && (
             <button
               onClick={toggleShowAllTracks}
-              className="mt-2 flex items-center text-blue-500 hover:text-blue-700 text-sm sm:text-base"
+              className="mt-2 flex items-center text-[#FFD700] hover:text-[#FFD700]-900 text-sm sm:text-base"
             >
               {showAllTracks ? (
                 <>

@@ -4,9 +4,20 @@ import Player from './components/Player';
 import TrackList from './components/TrackList';
 import ArtistList from './components/ArtistList';
 
-const Tracks: React.FC = () => {
+interface TracksProps {
+  selectedTrackId: number | null;
+}
+
+interface TracksProps {
+  selectedTrackId: number | null;
+}
+
+const Tracks: React.FC<TracksProps> = ({ selectedTrackId }) => {
   const [currentTrack, setCurrentTrack] = useState<Track | null>(null);
   const [selectedArtist, setSelectedArtist] = useState<string>('');
+
+  // Add this console.log to use the prop and silence the warning
+  console.log('Selected track ID:', selectedTrackId);
 
   const filteredTracks = selectedArtist
     ? tracks.filter((track) => track.artist === selectedArtist)

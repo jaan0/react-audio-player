@@ -42,6 +42,7 @@ export interface Track {
   author: string;
   thumbnail: string;
   artist: string; // Add this line
+  
 }
 
 export const tracks: Track[] = [
@@ -52,6 +53,7 @@ export const tracks: Track[] = [
     author: "by Faris Shafi",
     thumbnail: intro,
     artist: "Faris Shafi", // Add this line
+   
   },
   {
     id: 2,
@@ -60,7 +62,8 @@ export const tracks: Track[] = [
     author: "by Faris Shafi",
     thumbnail: buster,
     artist: "Faris Shafi", // Add this line
-  },
+   
+    },
   {
     id: 3,
     title: "Muaziz Sarrif",
@@ -68,6 +71,7 @@ export const tracks: Track[] = [
     author: "by Faris Shafi",
     thumbnail: sarif,
     artist: "Faris Shafi", // Add this line
+    
   },
   {
     id: 4,
@@ -92,6 +96,7 @@ export const tracks: Track[] = [
     author: "by Faris Shafi",
     thumbnail: laafz,
     artist: "Faris Shafi", // Add this line
+   
   },
   {
     id: 7,
@@ -100,6 +105,7 @@ export const tracks: Track[] = [
     author: "by Faris Shafi",
     thumbnail: felonyy,
     artist: "Faris Shafi", // Add this line
+    
   },
   {
     id: 8,
@@ -108,6 +114,7 @@ export const tracks: Track[] = [
     author: "by Faris Shafi",
     thumbnail: lovee,
     artist: "Faris Shafi", // Add this line
+   
   },
   {
     id: 9,
@@ -116,6 +123,7 @@ export const tracks: Track[] = [
     author: "by Talha Anjum",
     thumbnail: jevinn,
     artist: "Talha Anjum", // Add this line
+   
   },
   {
     id: 10,
@@ -124,6 +132,7 @@ export const tracks: Track[] = [
     author: "by Jokhay JJ47",
     thumbnail: running,
     artist: "Jokhay JJ47", // Add this line
+    
   },
   {
     id: 11,
@@ -132,6 +141,7 @@ export const tracks: Track[] = [
     author: "by Ali Zafar",
     thumbnail: ali,
     artist: "Ali Zafar", // Add this line
+    
   },
   {
     id: 12,
@@ -148,7 +158,8 @@ export const tracks: Track[] = [
     author: "by Asim Azhar",
     thumbnail: asim,
     artist: "Asim Azhar", // Add this line
-  },
+    
+},
   {
     id: 14,
     title: "Soneya",
@@ -156,6 +167,7 @@ export const tracks: Track[] = [
     author: "by Asim Azhar",
     thumbnail: soneya,
     artist: "Asim Azhar", // Add this line
+    
   },
   {
     id: 15,
@@ -164,6 +176,7 @@ export const tracks: Track[] = [
     author: "by Asim Azhar",
     thumbnail: GalatFehmi,
     artist: "Asim Azhar", // Add this line
+    
   },
 
 ];
