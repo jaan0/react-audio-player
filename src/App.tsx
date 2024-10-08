@@ -32,6 +32,7 @@ function searchSongAcrossAllArtists(query: string): Song | null {
 function AppContent() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [searchError, setSearchError] = useState('');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [selectedTrackId, setSelectedTrackId] = useState<number | null>(null);
   const currentYear = new Date().getFullYear();
@@ -50,6 +51,12 @@ function AppContent() {
   }, [searchTerm]);
 
   const handleSearch = (query: string) => {
+    if (!query.trim()) {
+      setSearchError('Please enter a search term');
+      return;
+    }
+
+    setSearchError(''); // Clear any previous error
     const song = searchSongAcrossAllArtists(query);
     
     if (song) {
@@ -108,13 +115,17 @@ function AppContent() {
                     type="text"
                     placeholder="Search..."
                     value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="search-input px-2 py-1 rounded text-black w-full sm:w-64 mb-2 sm:mb-0"
+                    onChange={(e) => {
+                      setSearchTerm(e.target.value);
+                      setSearchError(''); // Clear error when user types
+                    }}
+                    className={`search-input px-2 py-1 rounded text-black w-full sm:w-64 mb-2 sm:mb-0 ${searchError ? 'border-red-500' : ''}`}
                   />
                   <button type="submit" className="search-button bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded sm:ml-2">
                     Search
                   </button>
                 </form>
+                {searchError && <p className="text-red-500 text-sm mt-1">{searchError}</p>}
                 {searchResults.length > 0 && (
                   <ul className="absolute z-10 bg-white text-black mt-1 w-full rounded shadow-lg max-h-60 overflow-y-auto">
                     {searchResults.map((result, index) => (
@@ -160,7 +171,7 @@ function AppContent() {
               <br />
               <br />  
               <br />
-      <footer className={`${showAudioPlayer ? 'fixed bottom-0 left-0 right-0' : ''} bg-black bg-opacity-30 text-white`}>
+      <footer className={`${showAudioPlayer ? 'fixed bottom-0 left-0 right-0' : ''} bg-black bg-opacity-80 text-white`}>
         <div className="container mx-auto">
           {showAudioPlayer && <AudioPlayer />}
           <p className="text-center py-2">&copy; {currentYear} Created with ❤️ by <a href="https://github.com/jaan0">Jan</a>. All rights reserved.</p>
