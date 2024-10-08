@@ -35,6 +35,10 @@ interface AudioPlayerContextType {
   setIsShuffle: Dispatch<SetStateAction<boolean>>;
   isRepeat: boolean;
   setIsRepeat: Dispatch<SetStateAction<boolean>>;
+  skipForward: () => void;
+  skipBackward: () => void;
+  playNextTrack: () => void;
+  playPreviousTrack: () => void;
 }
 
 const AudioPlayerContext = createContext<
@@ -54,9 +58,47 @@ export const AudioPlayerProvider = ({
   const [timeProgress, setTimeProgress] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [isShuffle, setIsShuffle] = useState<boolean>(false);
+  const [isRepeat, setIsRepeat] = useState<boolean>(false);
 
   const audioRef = useRef<HTMLAudioElement>(null);
   const progressBarRef = useRef<HTMLInputElement>(null);
+
+  const skipForward = () => {
+    if (audioRef.current) {
+      audioRef.current.currentTime += 15;
+    }
+  };
+
+  const skipBackward = () => {
+    if (audioRef.current) {
+      audioRef.current.currentTime -= 15;
+    }
+  };
+
+  const playNextTrack = () => {
+    setTrackIndex((prev) => {
+      const newIndex = isShuffle
+        ? Math.floor(Math.random() * tracks.length)
+        : prev >= tracks.length - 1
+        ? 0
+        : prev + 1;
+      setCurrentTrack(tracks[newIndex]);
+      return newIndex;
+    });
+  };
+
+  const playPreviousTrack = () => {
+    setTrackIndex((prev) => {
+      const newIndex = isShuffle
+        ? Math.floor(Math.random() * tracks.length)
+        : prev === 0
+        ? tracks.length - 1
+        : prev - 1;
+      setCurrentTrack(tracks[newIndex]);
+      return newIndex;
+    });
+  };
 
   const contextValue = {
     currentTrack,
@@ -71,10 +113,14 @@ export const AudioPlayerProvider = ({
     isPlaying,
     setIsPlaying,
     trackIndex,
-    isShuffle: false,
-    setIsShuffle: () => {},
-    isRepeat: false,
-    setIsRepeat: () => {},
+    isShuffle,
+    setIsShuffle,
+    isRepeat,
+    setIsRepeat,
+    skipForward,
+    skipBackward,
+    playNextTrack,
+    playPreviousTrack,
   };
 
   return (

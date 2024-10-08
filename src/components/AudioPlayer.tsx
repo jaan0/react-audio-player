@@ -94,7 +94,7 @@ export const AudioPlayer: React.FC = () => {
   if (!currentTrack) return null;
 
   return (
-    <div className="bg-[#2e2d2d] flex flex-col sm:flex-row items-center text-white p-2 sm:p-3 md:p-4">
+    <div className="bg-blue-500 text-white p-3 rounded-full hover:bg-blue-600 transition-colors">
       <div className="w-full sm:w-1/4 mb-2 sm:mb-0">
         <TrackInfo currentTrack={currentTrack} />
       </div>
@@ -102,9 +102,6 @@ export const AudioPlayer: React.FC = () => {
         <Controls
           isPlaying={isPlaying}
           onPlayPause={handlePlayPause}
-          duration={duration}
-          currentTime={currentTime}
-          onSeek={handleSeek}
         />
         <ProgressBar currentTime={currentTime} duration={duration} onSeek={handleSeek} />
       </div>
