@@ -1,11 +1,20 @@
 import React, { useRef, useEffect } from 'react';
-import { Controls, ControlsProps } from '../components/Controls'; // Update this import
+import MusicControl from '../components/MusicControl';
 import { useAudio } from '../context/AudioContext';
-import { Track } from '../data/tracks'; // Import Track type
+import { Track, tracks } from '../data/tracks'; // Import Track type
 
 interface PlayerProps {
   track: Track;
 }
+
+type MusicControlProps = {
+  track: { title: string; artist: string; src: string; thumbnail: string; };
+  tracks: { title: string; artist: string; src: string; thumbnail: string; }[];
+  currentTrackIndex: number;
+  onTrackChange: (index: number) => void;
+  isPlaying: boolean; // Add this line
+  onPlayPause: () => void; // Add this line if it doesn't exist
+};
 
 const Player: React.FC<PlayerProps> = ({ track }) => {
   const { isPlaying, setIsPlaying } = useAudio();
@@ -34,12 +43,15 @@ const Player: React.FC<PlayerProps> = ({ track }) => {
     setIsPlaying(!isPlaying);
   };
 
-
-  const controlsProps: ControlsProps = {
+  const controlsProps: MusicControlProps = {
     isPlaying,
-    onPlayPause: handlePlayPause
+    onPlayPause: handlePlayPause,
+    track,
+    tracks,
+    currentTrackIndex: 0,
+    onTrackChange: () => {}
   };
-
+  
   return (
     <div className="bg-[#23232359] p-4 rounded-lg shadow-md text-center">
       <img src={track.thumbnail} alt={track.title} className="w-full h-48 object-cover mb-4 rounded" />
@@ -50,12 +62,16 @@ const Player: React.FC<PlayerProps> = ({ track }) => {
         src={track.src}
         onEnded={() => setIsPlaying(false)}
       />
-      <Controls 
-        {...controlsProps}
+      <MusicControl 
+        {...controlsProps} 
+        track={track} 
+        // Add the missing properties
+        tracks={tracks} 
+        currentTrackIndex={0} 
+        onTrackChange={() => {}} 
       />
     </div>
   );
 };
 
 export default Player;
-

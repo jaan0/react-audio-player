@@ -1,5 +1,5 @@
 import React from 'react';
-import { SeekBarProps } from './AudioPlayer';
+import { SeekBarProps } from './MusicPlayer'; // Ensure it's imported as a type
 
 const ProgressBar: React.FC<SeekBarProps> = ({ currentTime, duration, onSeek }) => {
   const formatTime = (time: number) => {
@@ -14,7 +14,7 @@ const ProgressBar: React.FC<SeekBarProps> = ({ currentTime, duration, onSeek }) 
   };
 
   return (
-    <div className="w-full flex items-center gap-2">
+    <div className="flex items-center w-full">
       <span className="text-xs">{formatTime(currentTime)}</span>
       <input
         type="range"
@@ -22,7 +22,7 @@ const ProgressBar: React.FC<SeekBarProps> = ({ currentTime, duration, onSeek }) 
         max={duration || 100}
         value={currentTime}
         onChange={handleSeek}
-        className="w-full"
+        className="flex-grow mx-2"
         style={{ background: `linear-gradient(to right, #1db954 0%, #1db954 ${(currentTime / duration) * 100}%, #4d4d4d ${(currentTime / duration) * 100}%, #4d4d4d 100%)` }}
       />
       <span className="text-xs">{formatTime(duration)}</span>

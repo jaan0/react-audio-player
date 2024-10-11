@@ -3,6 +3,18 @@
 @tailwind utilities;
 
 
+@font-face {
+  font-family: 'Dinamo';
+  src: url('/path/to/fonts/dinamo.woff2') format('woff2'),
+       url('/path/to/fonts/dinamo.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+body{
+  font-family: 'Dinamo', sans-serif;
+}
 .about-page {
     padding: 40px;
     max-width: 800px;
@@ -67,7 +79,7 @@
     padding: 20px;
     transition: all 0.2s ease-in;
     background-color: rgba(18, 18, 18, 0.6);
-    color: red;
+    color: white;
     width: 90%;
     max-width: 500px;
     backdrop-filter: blur(10px);
@@ -109,7 +121,7 @@
     cursor: pointer;
     box-shadow: 5px 5px 0 rgba(255, 255, 255, 0.1);
     transform: translateX(-5px) translateY(-5px);
-    background-color: rgba(240, 30, 30, 0.856);
+    background-color: #009253;
 }
 
 @media (max-width: 768px) {
@@ -146,6 +158,52 @@
         font-size: 12px;
     }
 }
+
+.ribbon {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #FFD700; /* Adjust color as needed */
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 999;
+  font-size: 16px; /* Adjust font size for responsiveness */
+  height: 50px;
+}
+
+.ribbon h3 {
+  font-weight: bold;
+  color: #000;
+  flex-grow: 1; /* Allow text to expand to fill available space */
+}
+
+.ribbon button {
+  background-color: transparent;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  font-size: 14px; /* Adjust font size for responsiveness */
+  padding: 5px 10px;
+}
+
+@media (max-width: 768px) {
+  /* Adjust styles for smaller screens */
+  .ribbon {
+    font-size: 14px;
+  }
+
+  .ribbon span {
+    font-size: 14px;
+  }
+
+  .ribbon button {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+} 
 
 @layer base {
   :root {
@@ -211,9 +269,6 @@
     @apply bg-background text-foreground;
     }
 }
-
-
-
 
 
 

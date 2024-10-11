@@ -34,7 +34,7 @@ const Tracks: React.FC<TracksProps> = ({ selectedTrackId }) => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4 text-center text-[#FF0000]">All Tracks</h1>
+      <h1 className="text-3xl font-bold mb-4 text-center text-[#FF0000]">All Tracks🎶 </h1>
       <hr className=' border-[#FF0000] w-100'/>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-14 ">
         <div className="md:col-span-2">
