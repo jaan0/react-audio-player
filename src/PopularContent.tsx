@@ -7,7 +7,11 @@ const PopularContent: React.FC = () => {
   const navigate = useNavigate();
 
   const handleShowMore = () => {
-    setVisibleTracks(prev => prev + 7); // Show 7 more tracks
+    setVisibleTracks(prev => Math.min(prev + 7, tracks.length)); // Show 7 more tracks, but not more than available
+  };
+
+  const handleShowLess = () => {
+    setVisibleTracks(7); // Reset to initial number of tracks
   };
 
   const handleTrackClick = (artist: string) => {
@@ -43,9 +47,17 @@ const PopularContent: React.FC = () => {
           ))}
         </div>
         <br />
-        <button className="text-sm text-[#3be377]" onClick={handleShowMore}>
-          Show More
-        </button>
+        {visibleTracks < tracks.length ? (
+          <button className="text-sm text-[#3be377]" onClick={handleShowMore}>
+            Show More
+          </button>
+        ) : (
+          visibleTracks > 7 && (
+            <button className="text-sm text-[#3be377]" onClick={handleShowLess}>
+              Show Less
+            </button>
+          )
+        )}
       </section>
     </div>
   );
