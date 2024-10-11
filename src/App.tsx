@@ -95,7 +95,7 @@ function AppContent() {
     {currentTrack ? (
     <MusicPlayer track={currentTrack} />
 ) : (
-    <div>No track selected</div> // Optional: Display a message or placeholder
+    <div></div> // Optional: Display a message or placeholder
 )}
 
   </>);
