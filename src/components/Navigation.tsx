@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../logo/logo.png'; // Update this path
+import { Track} from '../data/tracks';
+import { FaGithub, FaEnvelope, FaGlobe,  FaInstagram } from 'react-icons/fa';
+
 
 
 
 export interface NavigationProps {
   searchTerm: string;
-  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  setSearchTerm: (term: string) => void;
   handleSearch: (term: string) => void;
-  searchResults: any[]; // Replace 'any' with a more specific type if possible
-  handleSearchResultClick: (result: any) => void; // Replace 'any' with a more specific type if possible
+  searchResults: Track[];
+  handleSearchResultClick: (result: Track) => void;
 }
 
 const Navigation: React.FC<NavigationProps> = ({
@@ -39,34 +42,33 @@ const Navigation: React.FC<NavigationProps> = ({
           </Link>
           
           <div className="hidden md:flex space-x-4">
-            <Link to="/" className="hover:text-pink-300">Home</Link>
-            <Link to="/tracks" className="hover:text-pink-300">Tracks</Link>
-            <Link to="/about" className="hover:text-pink-300">About</Link>
-            <Link to="/contact" className="hover:text-pink-300">Contact Us</Link>
+            <Link to="/" className="text-[#ce4444a6] hover:text-[#FF0000]">Home</Link>
+            <Link to="/tracks" className="text-[#ce4444a6] hover:text-[#FF0000]">Tracks</Link>
+            <Link to="/about" className="text-[#ce4444a6] hover:text-[#FF0000]">About</Link>
+            <Link to="/contact" className="text-[#ce4444a6] hover:text-[#FF0000]">Request a song</Link>
+          </div>
+
+          <div className="hidden md:flex space-x-4">
+            <a href="https://github.com/jaan0" target="_blank" rel="noopener noreferrer" className="text-[#FFD700] hover:text-[#FF0000]">
+              <FaGithub size={24} />
+            </a>
+            <a href="mailto:ali.mahesar04@gmail.com" className="text-[#FFD700] hover:text-[#FF0000]">
+              <FaEnvelope size={24} />
+            </a>
+            <a href="https://portfolio-ali-jans-projects.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-[#FFD700] hover:text-[#FF0000]">
+              <FaGlobe size={24} />
+            </a>
+            <a href="https://www.instagram.com/a.l.i._.j.a.a.n/" target="_blank" rel="noopener noreferrer" className="text-[#FFD700] hover:text-[#FF0000]">
+              <FaInstagram size={24} />
+            </a>
           </div>
           
-          <div className="flex items-center space-x-12  ">
+          <div className="flex items-center space-x-4 md:space-x-12">
             <button onClick={toggleSearch} className="md:hidden">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </button>
-            <form onSubmit={onSearch} className="hidden md:flex">
-              <input
-                type="text"
-                placeholder="Search..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="bg-gray-700 text-white px-3 py-1 rounded-l"
-              />
-              <button type="submit" className="bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded-r">
-                Search
-              </button>
-            </form>
-            <div className="hidden md:flex space-x-2">
-              <Link to="/login" className="bg-green-500 hover:bg-green-600 px-3 py-1 rounded">Login</Link>
-              <Link to="/signup" className="bg-purple-500 hover:bg-purple-600 px-3 py-1 rounded">Signup</Link>
-            </div>
             <button onClick={toggleMenu} className="md:hidden">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
@@ -77,12 +79,24 @@ const Navigation: React.FC<NavigationProps> = ({
         
         {isMenuOpen && (
           <div className="mt-4 md:hidden">
-            <Link to="/" className="block py-2 hover:text-pink-300">Home</Link>
-            <Link to="/tracks" className="block py-2 hover:text-pink-300">Tracks</Link>
-            <Link to="/about" className="block py-2 hover:text-pink-300">About</Link>
-            <Link to="/contact" className="block py-2 hover:text-pink-300">Contact Us</Link>
-            <Link to="/login" className="block py-2 hover:text-pink-300">Login</Link>
-            <Link to="/signup" className="block py-2 hover:text-pink-300">Signup</Link>
+            <Link to="/" className="block py-2 text-[#ce4444a6] hover:text-[#FF0000]">Home</Link>
+            <Link to="/tracks" className="block py-2 text-[#ce4444a6] hover:text-[#FF0000]">Tracks</Link>
+            <Link to="/about" className="block py-2 text-[#ce4444a6] hover:text-[#FF0000]">About</Link>
+            <Link to="/contact" className="block py-2 text-[#ce4444a6] hover:text-[#FF0000]">Contact Us</Link>
+            <div className="flex space-x-4 mt-4">
+              <a href="https://github.com/jaan0" target="_blank" rel="noopener noreferrer" className="text-[#FFD700] hover:text-[#FF0000]">
+                <FaGithub size={24} />
+              </a>
+              <a href="mailto:ali.mahesar04@gmail.com" className="text-[#FFD700] hover:text-[#FF0000]">
+                <FaEnvelope size={24} />
+              </a>
+              <a href="https://portfolio-ali-jans-projects.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-[#FFD700] hover:text-[#FF0000]">
+                <FaGlobe size={24} />
+              </a>
+              <a href="https://www.instagram.com/a.l.i._.j.a.a.n/" target="_blank" rel="noopener noreferrer" className="text-[#FFD700] hover:text-[#FF0000]">
+                <FaInstagram size={24} />
+              </a>
+            </div>
           </div>
         )}
         
@@ -112,7 +126,7 @@ const Navigation: React.FC<NavigationProps> = ({
                 onClick={() => handleSearchResultClick(result)}
               >
                 <div className="font-semibold">{result.title}</div>
-                <div className="text-sm text-gray-600">{result.type}</div>
+                <div className="text-sm text-gray-600">{result.artist}</div>
               </div>
             ))}
           </div>

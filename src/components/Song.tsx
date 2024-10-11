@@ -33,7 +33,7 @@ const Song: React.FC = () => {
 
   return (
     <div>
-      <h2>{song.title}</h2>
+      <h2 >{song.title}</h2>
       <p>Artist: {song.artist}</p>
       {/* Add more song details and a play button */}
     </div>

@@ -1,0 +1,23 @@
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  padding: 20px;
+  border-radius: 50px;
+}
+
+.controlButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0 10px;
+  transition: transform 0.3s ease;
+}
+
+
+
+.funkyIcon {
+  font-size: 2rem;
+  filter: drop-shadow(0 0 5px rgba(255,255,255,0.7));
+}

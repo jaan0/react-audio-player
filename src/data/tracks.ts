@@ -1,4 +1,5 @@
 // audio files
+
 import introduction from './introduction.mp3';
 import blockbuster from './blockbuster.mp3';
 import muaziz from './MuazizSaarif.mp3';
@@ -14,6 +15,13 @@ import jhooom from './jhooom.mp3';
 import asimmm from './asimmm.mp3';
 import soneyaa from './soneyaa.mp3';
 import galat from './GalatFehmi.mp3';
+import rollinn from './rollinn.mp3';
+import shitt from './shitt.mp3';
+import elevatedd from './elevatedd.mp3';
+import Cheques from './Cheques.mp3';
+import MVPP from './MVPP.mp3';
+import NOLOVE from './NOLOVE.mp3';
+import STILLL from './STILLL.mp3';
 
 // audio thumbnails
 import awam from './awam.jpg';
@@ -31,7 +39,13 @@ import jhoom from './jhoom.png';
 import asim from './asim.jpg';
 import soneya from './soneya.png';
 import GalatFehmi from './galat.png';
-
+import rollin from './rollin.png';
+import shit from './shit.png';
+import elevated from './elevated.png';
+import Chequess from './Chequess.png';
+import mvp from './mvp.png';
+import nolove from './nolove.png';
+import STILL from './STILL.png';
 
 
 
@@ -177,6 +191,62 @@ export const tracks: Track[] = [
     thumbnail: GalatFehmi,
     artist: "Asim Azhar", // Add this line
     
+  },
+  {
+    id: 16,
+    title: "We Rollin",
+    src: rollinn,
+    author: "by Shubh",
+    thumbnail: rollin,
+    artist: "Shubh",
+  },
+  {
+    id: 17,
+    title: "King Shit",
+    src: shitt,
+    author: "by Shubh",
+    thumbnail: shit,
+    artist: "Shubh",
+  },
+  {
+    id: 18,
+    title: "Elevated",
+    src: elevatedd,
+    author: "by Shubh",
+    thumbnail: elevated,
+    artist: "Shubh",
+  },
+  {
+    id: 19,
+    title: "Cheques",
+    src: Cheques,
+    author: "by Shubh",
+    thumbnail: Chequess,
+    artist: "Shubh",
+  },
+  {
+    id: 20,
+    title: "MVP",
+    src: MVPP,
+    author: "by Shubh",
+    thumbnail: mvp,
+    artist: "Shubh",
+  },
+  {
+    id: 21,
+    title: "No Love",
+    src: NOLOVE,
+    author: "by Shubh",
+    thumbnail: nolove,
+    artist: "Shubh",
+  },
+  {
+    id: 22,
+    title: "Still Rollin",
+    src: STILLL,
+    author: "by Shubh",
+    thumbnail: STILL,
+    artist: "Shubh",
   },
 
 ];

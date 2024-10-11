@@ -1,18 +1,15 @@
+import { Track, useAudioPlayer } from '../context/audio-player-context';
+import { tracks } from '../data/tracks';
 import { BsMusicNoteBeamed } from 'react-icons/bs';
 
-import {
-  Track,
-  useAudioPlayerContext,
-} from '../context/audio-player-context';
-import { tracks } from '../data/tracks';
-
 export const PlayList = () => {
-  const { currentTrack, setIsPlaying, setCurrentTrack } =
-    useAudioPlayerContext();
+  const { currentTrack } = useAudioPlayer();
 
   const handleClick = (track: Track) => {
-    setCurrentTrack(track);
-    setIsPlaying(true);
+    // We need to implement this functionality
+    // without setCurrentTrack and audioPlayer
+    console.log('Track selected:', track);
+    // TODO: Implement track selection and playback
   };
 
   return (
@@ -48,7 +45,7 @@ export const PlayList = () => {
           </div>
           <div>
             <p className="font-bold text-sm">{track.title}</p>
-            <p className="text-sm text-gray-400">{track.author}</p>
+            <p className="text-sm text-gray-4 00">{track.author}</p>
           </div>
         </li>
       ))}

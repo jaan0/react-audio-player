@@ -1,143 +1,88 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  ReactNode,
-  Dispatch,
-  SetStateAction,
-  RefObject,
-  useRef,
-} from 'react';
+import React, { createContext, useContext, useState, useCallback, ReactNode } from 'react';
+import { tracks } from '../data/tracks';  // Import your tracks data
 
-import { tracks } from '../data/tracks';
+//import { tracks } from '../data/tracks';
 
 export interface Track {
+  id: number;
   title: string;
   src: string;
   author: string;
-  thumbnail?: string;
+  thumbnail: string;
+  artist: string;
 }
 
 interface AudioPlayerContextType {
-  currentTrack: Track | null;
-  setCurrentTrack: Dispatch<SetStateAction<Track>>;
-  audioRef: RefObject<HTMLAudioElement>;
-  progressBarRef: RefObject<HTMLInputElement>;
-  timeProgress: number;
-  setTimeProgress: Dispatch<SetStateAction<number>>;
-  duration: number;
-  setDuration: Dispatch<SetStateAction<number>>;
-  setTrackIndex: Dispatch<SetStateAction<number>>;
+  currentTrack: Track;
   isPlaying: boolean;
-  setIsPlaying: Dispatch<SetStateAction<boolean>>;
-  trackIndex: number;
+  togglePlayPause: () => void;
+  nextTrack: () => void;
+  previousTrack: () => void;
   isShuffle: boolean;
-  setIsShuffle: Dispatch<SetStateAction<boolean>>;
+  setIsShuffle: (value: boolean) => void;
   isRepeat: boolean;
-  setIsRepeat: Dispatch<SetStateAction<boolean>>;
+  setIsRepeat: (value: boolean) => void;
   skipForward: () => void;
   skipBackward: () => void;
   playNextTrack: () => void;
   playPreviousTrack: () => void;
 }
 
-const AudioPlayerContext = createContext<
-  AudioPlayerContextType | undefined
->(undefined);
+const AudioPlayerContext = createContext<AudioPlayerContextType | undefined>(undefined);
 
-export const AudioPlayerProvider = ({
-  children,
-}: {
+// Define the props type for AudioPlayerProvider
+interface AudioPlayerProviderProps {
   children: ReactNode;
-}) => {
-  const [trackIndex, setTrackIndex] = useState<number>(0);
+}
 
-  const [currentTrack, setCurrentTrack] = useState<Track>(
-    tracks[trackIndex]
-  );
-  const [timeProgress, setTimeProgress] = useState<number>(0);
-  const [duration, setDuration] = useState<number>(0);
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [isShuffle, setIsShuffle] = useState<boolean>(false);
-  const [isRepeat, setIsRepeat] = useState<boolean>(false);
+export const AudioPlayerProvider: React.FC<AudioPlayerProviderProps> = ({ children }) => {
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const progressBarRef = useRef<HTMLInputElement>(null);
+  const togglePlayPause = useCallback(() => {
+    setIsPlaying(prev => !prev);
+    // Add logic to actually play/pause audio
+  }, []);
 
-  const skipForward = () => {
-    if (audioRef.current) {
-      audioRef.current.currentTime += 15;
-    }
-  };
+  const nextTrack = useCallback(() => {
+    setCurrentTrackIndex(prevIndex => (prevIndex + 1) % tracks.length);
+    setIsPlaying(true);
+    // Add logic to play the new track
+  }, []);
 
-  const skipBackward = () => {
-    if (audioRef.current) {
-      audioRef.current.currentTime -= 15;
-    }
-  };
+  const previousTrack = useCallback(() => {
+    setCurrentTrackIndex(prevIndex => (prevIndex - 1 + tracks.length) % tracks.length);
+    setIsPlaying(true);
+    // Add logic to play the new track
+  }, []);
 
-  const playNextTrack = () => {
-    setTrackIndex((prev) => {
-      const newIndex = isShuffle
-        ? Math.floor(Math.random() * tracks.length)
-        : prev >= tracks.length - 1
-        ? 0
-        : prev + 1;
-      setCurrentTrack(tracks[newIndex]);
-      return newIndex;
-    });
-  };
-
-  const playPreviousTrack = () => {
-    setTrackIndex((prev) => {
-      const newIndex = isShuffle
-        ? Math.floor(Math.random() * tracks.length)
-        : prev === 0
-        ? tracks.length - 1
-        : prev - 1;
-      setCurrentTrack(tracks[newIndex]);
-      return newIndex;
-    });
-  };
-
-  const contextValue = {
-    currentTrack,
-    setCurrentTrack,
-    audioRef,
-    progressBarRef,
-    timeProgress,
-    setTimeProgress,
-    duration,
-    setDuration,
-    setTrackIndex,
-    isPlaying,
-    setIsPlaying,
-    trackIndex,
-    isShuffle,
-    setIsShuffle,
-    isRepeat,
-    setIsRepeat,
-    skipForward,
-    skipBackward,
-    playNextTrack,
-    playPreviousTrack,
-  };
-
+  const currentTrack = tracks[currentTrackIndex];
   return (
-    <AudioPlayerContext.Provider value={contextValue}>
+    <AudioPlayerContext.Provider value={{
+      currentTrack,
+      isPlaying,
+      togglePlayPause,
+      nextTrack,
+      previousTrack,
+      isShuffle: false, // Add default value
+      setIsShuffle: () => {}, // Add empty function for now
+      isRepeat: false, // Add default value
+      setIsRepeat: () => {}, // Add empty function for now
+      skipForward: () => {}, // Add empty function for now
+      skipBackward: () => {}, // Add empty function for now
+      playNextTrack: nextTrack, // Use existing nextTrack function
+      playPreviousTrack: previousTrack, // Use existing previousTrack function
+    }}>
       {children}
     </AudioPlayerContext.Provider>
   );
 };
 
-export const useAudioPlayerContext = (): AudioPlayerContextType => {
+// Export the useAudioPlayer hook
+export const useAudioPlayer = () => {
   const context = useContext(AudioPlayerContext);
-
   if (context === undefined) {
-    throw new Error(
-      'useAudioPlayerContext must be used within an AudioPlayerProvider'
-    );
+    throw new Error('useAudioPlayer must be used within an AudioPlayerProvider');
   }
-
   return context;
 };

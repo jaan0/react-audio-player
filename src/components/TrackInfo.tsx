@@ -22,8 +22,8 @@ const TrackInfo: React.FC<TrackInfoProps> = ({ currentTrack }) => {
         <div className="w-16 h-16 bg-gray-300 rounded-full"></div>
       )}
       <div>
-        <h3 className="font-bold">{currentTrack.title}</h3>
-        <p className="text-sm text-gray-400">{currentTrack.author}</p>
+        <h3 className="font-bold text-red-600">{currentTrack.title}</h3>
+        <p className="text-sm text-red-400">{currentTrack.author}</p>
       </div>
     </div>
   );

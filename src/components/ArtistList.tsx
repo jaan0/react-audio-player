@@ -12,7 +12,7 @@ const ArtistList: React.FC<ArtistListProps> = ({ onSelectArtist, selectedArtist 
 
   return (
     <div className="mb-4 sm:mb-6 md:mb-8">
-      <h2 className="text-3xl font-bold mb-4 text-center text-[#FFD700] ">Artists</h2>
+      <h2 className="text-3xl font-bold mb-4 text-center text-[#FF0000] ">Artists</h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2 sm:gap-3 ">
         <button
           onClick={() => {

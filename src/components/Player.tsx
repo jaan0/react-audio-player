@@ -41,10 +41,10 @@ const Player: React.FC<PlayerProps> = ({ track }) => {
   };
 
   return (
-    <div className="bg-gray-100 p-4 rounded-lg shadow-md text-center">
+    <div className="bg-[#23232359] p-4 rounded-lg shadow-md text-center">
       <img src={track.thumbnail} alt={track.title} className="w-full h-48 object-cover mb-4 rounded" />
-      <h2 className="text-xl font-bold mb-2">{track.title}</h2>
-      <p className="text-gray-600 mb-4">{track.author}</p>
+      <h2 className="text-xl font-bold mb-2 text-red-500 uppercase">{track.title}</h2>
+      <p className="text-red-500 mb-4">{track.author}</p>
       <audio
         ref={audioRef}
         src={track.src}

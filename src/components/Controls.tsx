@@ -11,7 +11,7 @@ import {
   BsHeart,
   BsHeartFill,
 } from 'react-icons/bs';
-import { useAudioPlayerContext } from '../context/audio-player-context';
+import { useAudioPlayer } from '../context/audio-player-context';
 
 export interface ControlsProps {
   isPlaying: boolean;
@@ -31,7 +31,7 @@ export const Controls: React.FC<ControlsProps> = ({
     skipBackward,
     playNextTrack,
     playPreviousTrack,
-  } = useAudioPlayerContext();
+  } = useAudioPlayer();
 
   const [isLiked, setIsLiked] = React.useState(false);
 
@@ -41,7 +41,7 @@ export const Controls: React.FC<ControlsProps> = ({
 
   return (
     <div className="flex items-center justify-center space-x-6">
-      <button onClick={() => setIsShuffle((prev) => !prev)}>
+      <button onClick={() => setIsShuffle(!isShuffle)}>
         <BsShuffle className={`w-5 h-5 ${isShuffle ? 'text-[#f50]' : 'text-gray-600'}`} />
       </button>
       <button onClick={playPreviousTrack}>
@@ -53,7 +53,7 @@ export const Controls: React.FC<ControlsProps> = ({
       
       <button 
         onClick={onPlayPause} 
-        className="bg-blue-500 text-white rounded-full p-3 hover:bg-blue-600"
+        className="bg-[#FF0000] text-white rounded-full p-3 hover:bg-[#FF0000]"
       >
         {isPlaying ? (
           <BsFillPauseFill className="w-8 h-8" />
@@ -68,7 +68,7 @@ export const Controls: React.FC<ControlsProps> = ({
       <button onClick={playNextTrack}>
         <BsSkipEndFill className="w-6 h-6 text-gray-600" />
       </button>
-      <button onClick={() => setIsRepeat((prev) => !prev)}>
+      <button onClick={() => setIsRepeat(!isRepeat)}>
         <BsRepeat className={`w-5 h-5 ${isRepeat ? 'text-[#f50]' : 'text-gray-600'}`} />
       </button>
       <button onClick={handleLike}>
