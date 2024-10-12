@@ -26,38 +26,42 @@ const ArtistPage: React.FC = () => {
     setCurrentTrack(track);
   };
 
-  return (<>
-    <div className='bg-[#121212] text-white p-6 flex flex-col md:flex-row'>
-        <div className='flex-none w-full md:w-1/3 h-48 bg-[#181818] mb-4 md:mb-0'>
-            <div className='flex-none w-full h-48'>
-            <img 
-          src={artistTracks[0].thumbnail} 
-          alt={artistName} 
-          className='w-full h-full object-cover rounded-md' />
-            </div>
+  return (
+    <>
+      <div className='artist-header'>
+        <div className='album-container'>
+          <img 
+            src={artistTracks[0].thumbnail} 
+            alt={artistName} 
+            className='album-cover' 
+          />
         </div>
-      <div className='flex-grow'>
-        <h1 className='text-3xl font-bold mb-2'>{artistName}</h1>
-        <h2 className='text-small mb-4'>Album</h2>
-        <br /> <br /> <br /> <br /><br /> <br />
-        <div className="grid grid-cols-1 gap-4">
-          {artistTracks.map(track => (
-            <div 
+        <div className='album-info'>
+          <h1 className='album-title'>{artistName}</h1>
+          <h2 className='album-type'>Album</h2>
+        </div>
+      </div>
+
+      <div className="album-details">
+        {artistTracks.map(track => (
+          <div 
             key={track.id} 
             className="p-4 rounded-md flex justify-between items-center"
             onClick={() => handleTrackClick(track)}
-            >
-              <MusicPlayer track={track} />
-            </div>
-          ))}
-          <MusicControl track={artistTracks[currentTrackIndex]} 
+          >
+            <MusicPlayer track={track} />
+          </div>
+        ))}
+        <hr className='album-divider' />
+        <MusicControl 
+          track={artistTracks[currentTrackIndex]} 
           tracks={artistTracks} 
           currentTrackIndex={currentTrackIndex} 
-          onTrackChange={handleTrackChange} />
-        </div>
+          onTrackChange={handleTrackChange} 
+        />
       </div>
-    </div>
-  </>);
+    </>
+  );
 };
 
 export default ArtistPage;

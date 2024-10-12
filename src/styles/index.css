@@ -74,7 +74,7 @@ body{
     flex-direction: column;
     text-align: left;
     border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 10px 10px 0 rgba(255, 255, 255, 0.05);
+    box-shadow: 10px 10px 0 rgba(73, 185, 51, 0.267);
     border-radius: 20px;
     padding: 20px;
     transition: all 0.2s ease-in;
@@ -121,7 +121,7 @@ body{
     cursor: pointer;
     box-shadow: 5px 5px 0 rgba(255, 255, 255, 0.1);
     transform: translateX(-5px) translateY(-5px);
-    background-color: #009253;
+    background-color: #3be377;
 }
 
 @media (max-width: 768px) {
@@ -159,51 +159,71 @@ body{
     }
 }
 
-.ribbon {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: #FFD700; /* Adjust color as needed */
-  padding: 10px;
+.album-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  z-index: 999;
-  font-size: 16px; /* Adjust font size for responsiveness */
-  height: 50px;
+  background-color: #121212;
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 10px 10px 0 rgba(255, 255, 255, 0.05);
 }
 
-.ribbon h3 {
+.album-cover {
+  width: 100%;
+  max-width: auto;
+  height: auto;
+  border-radius: 10px;
+  background-color: #d87676;
+}
+
+.album-info {
+  text-align: center;
+}
+
+.album-type {
+  font-size: 14px;
+  color: #666;
+}
+
+.album-title {
+  font-size: 28px;
   font-weight: bold;
-  color: #000;
-  flex-grow: 1; /* Allow text to expand to fill available space */
+  margin: 5px 0;
+  color: #3be377;
 }
 
-.ribbon button {
-  background-color: transparent;
-  border: none;
-  color: #000;
-  cursor: pointer;
-  font-size: 14px; /* Adjust font size for responsiveness */
-  padding: 5px 10px;
+.album-details {
+  font-size: 16px;
+  color: #666;
 }
 
-@media (max-width: 768px) {
-  /* Adjust styles for smaller screens */
-  .ribbon {
-    font-size: 14px;
+.album-divider {
+  border-top: 1px solid #3be377;
+  margin: 20px 0;
+}
+
+@media (min-width: 768px) {
+  .album-container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
   }
 
-  .ribbon span {
-    font-size: 14px;
+  .album-cover {
+    margin-right: 20px;
+    margin-bottom: 0;
   }
 
-  .ribbon button {
-    font-size: 12px;
-    padding: 5px 8px;
+  .album-info {
+    text-align: left;
   }
-} 
+
+  .album-title {
+    font-size: 36px;
+  }
+}
 
 @layer base {
   :root {

@@ -68,11 +68,11 @@ const MusicControl: React.FC<{
   };
 
   return (
-    <div className="bg-[#121212] text-white p-4 flex items-center justify-between fixed bottom-0 left-0 right-0">
-      <div className="flex items-center">
+    <div className="bg-[#4c4c4c] text-white p-4 flex items-center justify-between fixed bottom-0 left-0 right-0">
+      <div className="flex items-center ">
         <img src={track.thumbnail} alt={track.title} className="w-16 h-16 object-cover rounded-md mr-4" />
         <div>
-          <h3 className="font-semibold">{track.title}</h3>
+          <h3 className="font-semibold text-[#3be377]">{track.title}</h3>
           <p className="text-sm text-gray-400">{track.artist}</p>
         </div>
       </div>
