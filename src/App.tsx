@@ -14,6 +14,7 @@ import PopularContent from './PopularContent';
 import ArtistPage from './components/ArtistPage';
 import MusicPlayer from './components/MusicPlayer';
 
+
 function AppContent() {
   const location = useLocation();
   const [searchTerm, setSearchTerm] = useState('');
@@ -52,8 +53,12 @@ function AppContent() {
   const showAudioPlayer = location.pathname === '/' || location.pathname === '/tracks';
   const currentYear = new Date().getFullYear();
 
+
+
+
+
   return (<>
-    <div className="flex flex-col min-h-screen">
+   <div className="flex flex-col min-h-screen">
       <Navigation 
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
@@ -86,6 +91,7 @@ function AppContent() {
           </div>
         </footer>
       </AudioProvider>
+    
     </div>
     <div onClick={() => handleTrackSelect(tracks[0])}>
         {/* Track item content */}
@@ -97,10 +103,11 @@ function AppContent() {
 ) : (
     <div></div> // Optional: Display a message or placeholder
 )}
-
+      
   </>);
 
 }
+
 // Main App component
 function App() {
   return (
