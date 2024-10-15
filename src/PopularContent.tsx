@@ -48,12 +48,12 @@ const PopularContent: React.FC = () => {
         </div>
         <br />
         {visibleTracks < tracks.length ? (
-          <button className="text-sm text-[#3be377]" onClick={handleShowMore}>
+          <button className="text-lg text-[#3be377]" onClick={handleShowMore}>
             Show More
           </button>
         ) : (
           visibleTracks > 7 && (
-            <button className="text-sm text-[#3be377]" onClick={handleShowLess}>
+            <button className="text-lg text-[#3be377]" onClick={handleShowLess}>
               Show Less
             </button>
           )

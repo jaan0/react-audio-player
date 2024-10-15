@@ -1,5 +1,5 @@
 import React from 'react';
-import { SeekBarProps } from './MusicPlayer'; // Ensure it's imported as a type
+import  {SeekBarProps}  from './MusicPlayer'; // Ensure it's imported as a type
 
 const ProgressBar: React.FC<SeekBarProps> = ({ currentTime, duration, onSeek }) => {
   const formatTime = (time: number) => {

@@ -47,21 +47,21 @@ const Navigation: React.FC<NavigationProps> = ({
           <div className="hidden md:flex space-x-4">
             <Link to="/" className="home"><a href="https://emoji.gg/emoji/7184-spotify-home"><img src="https://cdn3.emoji.gg/emojis/7184-spotify-home.png" width="25px" height="25px" alt="Spotify_Home"/></a></Link>
             {/* <Link to="/tracks" className="text-white">🎶</Link> */}
-            <Link to="/about" className="text-[#3be399] hover:text-[#3be377]">About</Link>
-            <Link to="/contact" className="text-[#3be399] hover:text-[#3be377]">Request a song</Link>
+            <Link to="/about" className="text-[#0c7531] hover:text-[#3be377]">About</Link>
+            <Link to="/contact" className="text-[#0c7531] hover:text-[#3be377]">Request a song</Link>
           </div>
 
           <div className="hidden md:flex space-x-4">
-            <a href="https://github.com/jaan0" target="_blank" rel="noopener noreferrer" className="text-[#FFD700] hover:text-[#FF0000]">
+            <a href="https://github.com/jaan0" target="_blank" rel="noopener noreferrer" className="text-[#0c7531] hover:text-[#3be377]">
               <FaGithub size={24} />
             </a>
-            <a href="mailto:ali.mahesar04@gmail.com" className="text-[#FFD700] hover:text-[#FF0000]">
+            <a href="mailto:ali.mahesar04@gmail.com" className="text-[#0c7531] hover:text-[#3be377]">
               <FaEnvelope size={24} />
             </a>
-            <a href="https://portfolio-ali-jans-projects.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-[#FFD700] hover:text-[#FF0000]">
+            <a href="https://portfolio-ali-jans-projects.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-[#0c7531] hover:text-[#3be377]">
               <FaGlobe size={24} />
             </a>
-            <a href="https://www.instagram.com/a.l.i._.j.a.a.n/" target="_blank" rel="noopener noreferrer" className="text-[#FFD700] hover:text-[#FF0000]">
+            <a href="https://www.instagram.com/a.l.i._.j.a.a.n/" target="_blank" rel="noopener noreferrer" className="text-[#0c7531] hover:text-[#3be377]">
               <FaInstagram size={24} />
             </a>
           </div>
@@ -84,19 +84,19 @@ const Navigation: React.FC<NavigationProps> = ({
           <div className="mt-4 md:hidden">
             <Link to="/" className="block py-2 "><a href="https://emoji.gg/emoji/7184-spotify-home"><img src="https://cdn3.emoji.gg/emojis/7184-spotify-home.png" width="25px" height="25px" alt="Spotify_Home"/></a></Link>
             {/* <Link to="/tracks" className="block py-2">🎶</Link> */}
-            <Link to="/about" className="block py-2 text-[#ce4444a6] hover:text-[#FF0000]">About</Link>
-            <Link to="/contact" className="block py-2 text-[#ce4444a6] hover:text-[#FF0000]">Contact Us</Link>
+            <Link to="/about" className="block py-2 text-[#0c7531] hover:text-[#3be377]">About</Link>
+            <Link to="/contact" className="block py-2 text-[#0c7531] hover:text-[#3be377]">Contact Us</Link>
             <div className="flex space-x-4 mt-4">
-              <a href="https://github.com/jaan0" target="_blank" rel="noopener noreferrer" className="text-[#FFD700] hover:text-[#FF0000]">
+              <a href="https://github.com/jaan0" target="_blank" rel="noopener noreferrer" className="text-[#0c7531] hover:text-[#3be377]">
                 <FaGithub size={24} />
               </a>
-              <a href="mailto:ali.mahesar04@gmail.com" className="text-[#FFD700] hover:text-[#FF0000]">
+              <a href="mailto:ali.mahesar04@gmail.com" className="text-[#0c7531] hover:text-[#3be377]">
                 <FaEnvelope size={24} />
               </a>
-              <a href="https://portfolio-ali-jans-projects.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-[#FFD700] hover:text-[#FF0000]">
+              <a href="https://portfolio-ali-jans-projects.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-[#0c7531] hover:text-[#3be377]">
                 <FaGlobe size={24} />
               </a>
-              <a href="https://www.instagram.com/a.l.i._.j.a.a.n/" target="_blank" rel="noopener noreferrer" className="text-[#FFD700] hover:text-[#FF0000]">
+              <a href="https://www.instagram.com/a.l.i._.j.a.a.n/" target="_blank" rel="noopener noreferrer" className="text-[#0c7531] hover:text-[#3be377]">
                 <FaInstagram size={24} />
               </a>
             </div>

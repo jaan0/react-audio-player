@@ -1,24 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { FaPlay, FaPause, FaStepForward, FaStepBackward } from 'react-icons/fa';
+
 
 const MusicControl: React.FC<{ 
   track: { title: string; artist: string; src: string; thumbnail: string }; 
   tracks: { title: string; artist: string; src: string; thumbnail: string }[]; 
   currentTrackIndex: number; 
   onTrackChange: (index: number) => void; 
-}> = ({ track, tracks, currentTrackIndex, onTrackChange }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  isPlaying: boolean;
+  onPlayPause: () => void;
+}> = ({ track, tracks, currentTrackIndex, onTrackChange, isPlaying, onPlayPause }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  const togglePlay = () => {
-    if (isPlaying) {
-      audioRef.current?.pause();
-    } else {
-      audioRef.current?.play();
-    }
-    setIsPlaying(!isPlaying);
-  };
 
   const handleTimeUpdate = () => {
     if (audioRef.current) {
@@ -49,11 +43,14 @@ const MusicControl: React.FC<{
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.src = track.src; // Update audio source when track changes
+      audioRef.current.preload = 'auto'; // Preload the audio
       if (isPlaying) {
-        audioRef.current.play(); // Play the new track if it was already playing
+        audioRef.current.play().catch(error => console.error("Audio play error:", error)); // Handle play promise
+      } else {
+        audioRef.current.pause();
       }
     }
-  }, [track]); // Re-run when the track changes
+  }, [track, isPlaying]); // Re-run when the track or play state changes
 
   const handleNextTrack = () => {
     if (currentTrackIndex < tracks.length - 1) {
@@ -67,34 +64,41 @@ const MusicControl: React.FC<{
     }
   };
 
+  const someCalculationOrValue = 42; // Define it with a valid number
+  const maxValue = someCalculationOrValue; // Ensure this is a valid number
+
   return (
     <div className="bg-[#4c4c4c] text-white p-4 flex items-center justify-between fixed bottom-0 left-0 right-0">
-      <div className="flex items-center ">
+      <div className="flex items-center">
         <img src={track.thumbnail} alt={track.title} className="w-16 h-16 object-cover rounded-md mr-4" />
-        <div>
+        <div className="hidden sm:block">
           <h3 className="font-semibold text-[#3be377]">{track.title}</h3>
           <p className="text-sm text-gray-400">{track.artist}</p>
         </div>
       </div>
-      <div className="flex items-center"> 
-        <button onClick={togglePlay} className="text-green-500">
-          {isPlaying ? 'Pause' : 'Play'}
+      <div className="flex items-center space-x-4">
+        <button onClick={handlePreviousTrack} className="text-white">
+          <FaStepBackward />
         </button>
-        <audio ref={audioRef} src={track.src} />
-        <button className="ml-4" onClick={handleNextTrack}>Next</button>
-        <button className="ml-4" onClick={handlePreviousTrack}>Previous</button>
+        <button onClick={onPlayPause} className="text-white">
+          {isPlaying ? <FaPause /> : <FaPlay />}
+        </button>
+        <button onClick={handleNextTrack} className="text-white">
+          <FaStepForward />
+        </button>
       </div>
-      <div className="flex items-center ml-4">
-        <span>{Math.floor(currentTime)} / {Math.floor(duration)}</span>
+      <div className="flex items-center ml-4 space-x-2">
+        <span className="text-xs">{Math.floor(currentTime)} / {Math.floor(duration)}</span>
         <input
           type="range"
           min="0"
-          max={duration}
+          max={isNaN(maxValue) ? "0" : maxValue.toString()} // Cast to string or provide a default
           value={currentTime}
           onChange={handleProgressChange}
-          className="mx-2"
+          className="mx-2 w-full"
         />
       </div>
+      <audio ref={audioRef} preload="auto" />
     </div>
   );
 };
