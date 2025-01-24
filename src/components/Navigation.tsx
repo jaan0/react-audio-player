@@ -43,10 +43,24 @@ const Navigation: React.FC<NavigationProps> = ({
           <Link to="/" className="flex items-center">
             <img src={logo} alt="Logo" className="h-10 w-auto" />
           </Link>
+
+          
           
           <div className="hidden md:flex space-x-4">
             <Link to="/" className="home"><a href="https://emoji.gg/emoji/7184-spotify-home"><img src="https://cdn3.emoji.gg/emojis/7184-spotify-home.png" width="25px" height="25px" alt="Spotify_Home"/></a></Link>
             {/* <Link to="/tracks" className="text-white">🎶</Link> */}
+            {/* <form onSubmit={onSearch} className="flex items-center">
+              <input
+                type="text"
+                placeholder="What do you want to play?" 
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="bg-gray-700 text-white px-8 py-1 rounded-1"
+              />
+              <button type="submit" className="hover:color-[#3be377] px-3 py-1 rounded-r">
+                Search
+              </button>
+            </form> */}
             <Link to="/about" className="text-[#0c7531] hover:text-[#3be377]">About</Link>
             <Link to="/contact" className="text-[#0c7531] hover:text-[#3be377]">Request a song</Link>
           </div>
@@ -58,7 +72,7 @@ const Navigation: React.FC<NavigationProps> = ({
             <a href="mailto:ali.mahesar04@gmail.com" className="text-[#0c7531] hover:text-[#3be377]">
               <FaEnvelope size={24} />
             </a>
-            <a href="https://portfolio-ali-jans-projects.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-[#0c7531] hover:text-[#3be377]">
+            <a href="https://ali-jan.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-[#0c7531] hover:text-[#3be377]">
               <FaGlobe size={24} />
             </a>
             <a href="https://www.instagram.com/a.l.i._.j.a.a.n/" target="_blank" rel="noopener noreferrer" className="text-[#0c7531] hover:text-[#3be377]">
@@ -93,7 +107,7 @@ const Navigation: React.FC<NavigationProps> = ({
               <a href="mailto:ali.mahesar04@gmail.com" className="text-[#0c7531] hover:text-[#3be377]">
                 <FaEnvelope size={24} />
               </a>
-              <a href="https://portfolio-ali-jans-projects.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-[#0c7531] hover:text-[#3be377]">
+              <a href="https://ali-jan.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-[#0c7531] hover:text-[#3be377]">
                 <FaGlobe size={24} />
               </a>
               <a href="https://www.instagram.com/a.l.i._.j.a.a.n/" target="_blank" rel="noopener noreferrer" className="text-[#0c7531] hover:text-[#3be377]">
@@ -113,7 +127,7 @@ const Navigation: React.FC<NavigationProps> = ({
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="flex-grow bg-gray-700 text-white px-3 py-1 rounded-l"
               />
-              <button type="submit" className="bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded-r">
+              <button type="submit" className="bg-blue-500 hover:bg-gray-600 px-3 py-1 rounded-r">
                 Search
               </button>
             </div>
@@ -121,11 +135,11 @@ const Navigation: React.FC<NavigationProps> = ({
         )}
         
         {searchResults.length > 0 && (
-          <div className="absolute z-10 bg-white text-black mt-1 w-full rounded shadow-lg max-h-60 overflow-y-auto">
+          <div className="absolute z-10 bg-black text-white mt-1 w-full rounded shadow-lg max-h-60 overflow-y-auto align-item center">
             {searchResults.map((result, index) => (
               <div 
                 key={index} 
-                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                className="px-4 py-1 hover:bg-gray-500 cursor-pointer"
                 onClick={() => handleSearchResultClick(result)}
               >
                 <div className="font-semibold">{result.title}</div>

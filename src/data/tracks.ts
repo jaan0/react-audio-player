@@ -22,6 +22,9 @@ import Cheques from './Cheques.mp3';
 import MVPP from './MVPP.mp3';
 import NOLOVE from './NOLOVE.mp3';
 import STILLL from './STILLL.mp3';
+import falll from './fall.mp3';
+import falleen from './fallen.mp3';
+import IFYLL from './IFYLL.mp3';
 
 // audio thumbnails
 import awam from './awam.jpg';
@@ -46,6 +49,9 @@ import Chequess from './Chequess.png';
 import mvp from './mvp.png';
 import nolove from './nolove.png';
 import STILL from './STILL.png';
+import fall from './fall.png';
+import fallen from './fallen.png';
+import IFYL from './IFYL.png';
 
 
 
@@ -248,6 +254,31 @@ export const tracks: Track[] = [
     thumbnail: STILL,
     artist: "Shubh",
   },
+  {
+    id: 23,
+    title: "Fall",
+    src: falll,
+    author: "by Sia💕",
+    thumbnail: fall,
+    artist: "Sia",
+  },
+  {
+    id: 24,
+    title: "Falleen",
+    src: falleen,
+    author: "by Sia💕",
+    thumbnail: fallen,
+    artist: "Sia",
+  },
+  {
+    id: 25,
+    title: "I.F.Y.L",
+    src: IFYLL,
+    author: "by Sia💕",
+    thumbnail: IFYL,
+    artist: "Sia",
+  },
+  
 
 ];
 
