@@ -25,6 +25,12 @@ import STILLL from './STILLL.mp3';
 import falll from './falll.mp3';
 import falleen from './falleen.mp3';
 import IFYLL from './IFYLL.mp3';
+import itsyou from './itsyou.mp3';
+import thislove from './thislove.mp3';
+import insideyou from './insideyou.mp3';  
+import bonee from './bonee.mp3';
+import handss from './handss.mp3';
+import withyou from './withyou.mp3';
 
 // audio thumbnails
 import awam from './awam.jpg';
@@ -49,9 +55,15 @@ import Chequess from './Chequess.png';
 import mvp from './mvp.png';
 import nolove from './nolove.png';
 import STILL from './STILL.png';
-import fall from './fall.png';
+import fall from './fall.jpg';
 import fallen from './fallen.png';
 import IFYL from './IFYL.png';
+import you from './you.png';
+import thislovee from './thislovee.png';
+import inside from './inside.png';
+import bone from './bone.png';
+import hands from './hands.png';
+import tomorrow from './tomorrow.png';
 
 
 
@@ -256,7 +268,7 @@ export const tracks: Track[] = [
   },
   {
     id: 23,
-    title: "Fall",
+    title: "This is how i fall in love",
     src: falll,
     author: "by Sia💕",
     thumbnail: fall,
@@ -264,7 +276,7 @@ export const tracks: Track[] = [
   },
   {
     id: 24,
-    title: "Falleen",
+    title: "Fallen",
     src: falleen,
     author: "by Sia💕",
     thumbnail: fallen,
@@ -278,7 +290,54 @@ export const tracks: Track[] = [
     thumbnail: IFYL,
     artist: "Sia",
   },
-  
+  {
+    id: 26,
+    title: "IT'S YOU (feat.Keshi)",
+    src: itsyou,
+    author: "by Sia💕",
+    thumbnail: you,
+    artist: "Sia",
+  },
+  {
+    id: 27,
+    title: "This Love(Taylor's Version)",
+    src: thislovee,
+    author: "by Sia💕",
+    thumbnail: thislove,
+    artist: "Sia",
+  },
+  {
+    id: 28,
+    title: "Come Inside Of My Heart",
+    src: insideyou,
+    author: "by Sia💕",
+    thumbnail: inside,
+    artist: "Sia",
+  },
+  {
+    id: 29,
+    title: "To The Bone",
+    src: bonee,
+    author: "by Sia💕",
+    thumbnail: bone,
+    artist: "Sia",
+  },
+  {
+    id: 30,
+    title: "2 hands",
+    src: handss,
+    author: "by Sia💕",
+    thumbnail: hands,
+    artist: "Sia",
+  },
+  {
+    id: 31,
+    title: "Tomorrow With You",
+    src: withyou,
+    author: "by Sia💕",
+    thumbnail: tomorrow,
+    artist: "Sia",
+  },
 
 ];
 

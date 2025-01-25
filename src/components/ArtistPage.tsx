@@ -133,7 +133,9 @@ const ArtistPage: React.FC = () => {
               >
                 <td>{index + 1}</td>
                 <td>{track.title}</td>
-                <td>{durations[index] ? formatDuration(durations[index]) : 'Loading...'}</td>
+                <td>{durations[index] !== undefined && durations[index] !== null 
+                        ? formatDuration(durations[index]) 
+                        : 'loading...'}</td>
                 <td>
                   <button onClick={(e) => {
                     e.stopPropagation(); // Prevents the row's onClick from firing
