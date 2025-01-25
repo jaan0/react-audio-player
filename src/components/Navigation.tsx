@@ -48,7 +48,7 @@ const Navigation: React.FC<NavigationProps> = ({
           
           <div className="hidden md:flex space-x-4">
             <Link to="/" className="home"><a href="https://emoji.gg/emoji/7184-spotify-home"><img src="https://cdn3.emoji.gg/emojis/7184-spotify-home.png" width="25px" height="25px" alt="Spotify_Home"/></a></Link>
-            {/* <Link to="/tracks" className="text-white">🎶</Link> */}
+             <Link to="/tracks" className="text-white"></Link> 
             {/* <form onSubmit={onSearch} className="flex items-center">
               <input
                 type="text"
